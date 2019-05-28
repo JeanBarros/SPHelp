@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="Chamados" OnQuickLaunch="TRUE" TemplateType="100" Url="Lists/Chamados" Description="Lista para cadastrar todos os chamados técnicos" VersioningEnabled="TRUE"></ListInstance>
+</Elements>
