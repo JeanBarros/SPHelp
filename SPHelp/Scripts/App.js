@@ -31,19 +31,59 @@ function onSucceededCallback(sender, args) {
     }
     //myDiv.innerHTML = myText;
 
-    if (listItem.get_item('statusSolicitacao') == "Aguardando aprovação") {
-        CurrentUserMemberOfGroup("Dev", function (isCurrentUserInGroup) {
+    // Verifica o status da solicitação
+    if (listItem.get_item('statusSolicitacao') == "Rascunho") {
+
+        // Verifica se o usuário atual é membro do grupo especificado
+        CurrentUserMemberOfGroup("Aprovadores", function (isCurrentUserInGroup) {
             if (isCurrentUserInGroup) {
                 console.log('user is member of the group');
 
             }
             else {
                 console.log('user is not member of the group');
-                $('.ms-formtable tr:nth-child(5) input').empty()
-                $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('statusSolicitacao'))
+                $('.ms-formtable tr:nth-child(4)').remove()
+                $('.ms-formtable tr:nth-child(6)').remove()
+                $('.ms-formtable tr:nth-child(7)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+
+                //$('.ms-formtable tr:nth-child(5) input').empty()
+                //$('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('statusSolicitacao'))
+
+            }
+        });
+    }
+    
+    // Verifica o status da solicitação
+    if (listItem.get_item('statusSolicitacao') == "Aguardando aprovação") {
+
+        // Manipula os campos de acordo com o status
+        //$('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
+        //$('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
+        //$('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+        //$('.ms-formtable tr:nth-child(4) td:last-child').text(listItem.get_item('statusSolicitacao'))
+        //$('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
+        //$('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
+        //$('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('urlPaginaAfetada'))
+        //$('.ms-formtable tr:nth-child(7)').remove()
+        //$('.ms-formtable tr:nth-child(8)').remove()
+        //$('.ms-formtable tr:nth-child(8)').remove()
+        //$('.ms-formtable tr:nth-child(8)').remove()
+        //$('.ms-formtable tr:nth-child(8)').remove()
+
+        // Verifica se o usuário atual é membro do grupo especificado
+        CurrentUserMemberOfGroup("Aprovadores", function (isCurrentUserInGroup) {
+            if (isCurrentUserInGroup) {
+                console.log('user is member of the group');
+
+            }
+            else {
+                console.log('user is not member of the group');
+                //$('.ms-formtable tr:nth-child(5) input').empty()
+                //$('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('statusSolicitacao'))
                 
             }
-
         });
     }
 
