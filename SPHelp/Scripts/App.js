@@ -22,14 +22,13 @@ function ObterItensDaLista( itemId) {
 
 function onSucceededCallback(sender, args) {
     var enumerator = completedItems.getEnumerator();
-    var myText = 'Itens na lista: <br><br>';
+    var listItens = 'Itens na lista: <br><br>';
     while (enumerator.moveNext()) {
         var listItem = enumerator.get_current();
-        myText += 'Title: ' + listItem.get_item('Title') + '<br>';
-        myText += 'ID: ' + listItem.get_id() + '<br><br>';
-        myText += 'Status: ' + listItem.get_item('statusSolicitacao') + '<br>';
+        listItens += 'Title: ' + listItem.get_item('Title') + '<br>';
+        listItens += 'ID: ' + listItem.get_id() + '<br><br>';
+        listItens += 'Status: ' + listItem.get_item('statusSolicitacao') + '<br>';
     }
-    //myDiv.innerHTML = myText;
 
     // Verifica o status da solicitação
     if (listItem.get_item('statusSolicitacao') == "Rascunho") {
@@ -47,58 +46,194 @@ function onSucceededCallback(sender, args) {
                 $('.ms-formtable tr:nth-child(7)').remove()
                 $('.ms-formtable tr:nth-child(8)').remove()
                 $('.ms-formtable tr:nth-child(8)').remove()
-
-                //$('.ms-formtable tr:nth-child(5) input').empty()
-                //$('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('statusSolicitacao'))
-
             }
         });
     }
-    
-    // Verifica o status da solicitação
-    if (listItem.get_item('statusSolicitacao') == "Aguardando aprovação") {
 
-        // Manipula os campos de acordo com o status
-        //$('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
-        //$('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
-        //$('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
-        //$('.ms-formtable tr:nth-child(4) td:last-child').text(listItem.get_item('statusSolicitacao'))
-        //$('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
-        //$('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
-        //$('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('urlPaginaAfetada'))
-        //$('.ms-formtable tr:nth-child(7)').remove()
-        //$('.ms-formtable tr:nth-child(8)').remove()
-        //$('.ms-formtable tr:nth-child(8)').remove()
-        //$('.ms-formtable tr:nth-child(8)').remove()
-        //$('.ms-formtable tr:nth-child(8)').remove()
+    if (listItem.get_item('statusSolicitacao') == "Aguardando aprovação") {
 
         // Verifica se o usuário atual é membro do grupo especificado
         CurrentUserMemberOfGroup("Aprovadores", function (isCurrentUserInGroup) {
             if (isCurrentUserInGroup) {
-                console.log('user is member of the group');
+                $('.ms-formtable tr:nth-child(7)').remove()
+                $('.ms-formtable tr:nth-child(9)').remove()
+                $('.ms-formtable tr:nth-child(9)').remove()
+                $('.ms-formtable tr:nth-child(9)').remove()
 
+                $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
+                $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
+                $('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+                $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
+                $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
+                $('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
             }
             else {
-                console.log('user is not member of the group');
-                //$('.ms-formtable tr:nth-child(5) input').empty()
-                //$('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('statusSolicitacao'))
-                
+                $('.ms-formtable tr:nth-child(7)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+
+                $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
+                $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
+                $('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+                $('.ms-formtable tr:nth-child(4) td:last-child').text(listItem.get_item('statusSolicitacao'))
+                $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
+                $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
+                $('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
+
+                // remove a ribbon e o botão de salvar do form
+                $("#s4-ribbonrow").remove()
+                $('.ms-toolbar:nth-child(3)').remove()
             }
         });
     }
 
-    console.log(myText)
+    if (listItem.get_item('statusSolicitacao') == "Aberto") {
+
+        // Verifica se o usuário atual é membro do grupo especificado
+        CurrentUserMemberOfGroup("Suporte", function (isCurrentUserInGroup) {
+            if (isCurrentUserInGroup) {
+                $('.ms-formtable tr:nth-child(7)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+
+                $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
+                $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
+                $('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+                $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
+                $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
+                $('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
+            }
+            else {
+                console.log('user is not member of the group')
+                // Manipula os campos de acordo com o status
+                $('.ms-formtable tr:nth-child(7)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+
+                $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
+                $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
+                $('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+                $('.ms-formtable tr:nth-child(4) td:last-child').text(listItem.get_item('statusSolicitacao'))
+                $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
+                $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
+                $('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
+
+                // remove a ribbon e o botão de salvar do form
+                $("#s4-ribbonrow").remove()
+                $('.ms-toolbar:nth-child(3)').remove()
+            }
+        });
+    }
+
+    if (listItem.get_item('statusSolicitacao') == "Em andamento") {
+
+        // Verifica se o usuário atual é membro do grupo especificado
+        CurrentUserMemberOfGroup("Suporte", function (isCurrentUserInGroup) {
+            if (isCurrentUserInGroup) {
+                $('.ms-formtable tr:nth-child(7)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+
+                $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
+                $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
+                $('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+                $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
+                $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
+                $('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
+            }
+            else {
+                console.log('user is not member of the group')
+                // Manipula os campos de acordo com o status
+                $('.ms-formtable tr:nth-child(7)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+                $('.ms-formtable tr:nth-child(8)').remove()
+
+                $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
+                $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
+                $('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+                $('.ms-formtable tr:nth-child(4) td:last-child').text(listItem.get_item('statusSolicitacao'))
+                $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
+                $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
+                $('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
+
+                // remove a ribbon e o botão de salvar do form
+                $("#s4-ribbonrow").remove()
+                $('.ms-toolbar:nth-child(3)').remove()
+            }
+        });
+    }
+
+    if (listItem.get_item('statusSolicitacao') == "Fechado") {
+
+        $('.ms-formtable tr:nth-child(10)').remove()
+        $('.ms-formtable tr:nth-child(10)').remove()
+        $('.ms-formtable tr:nth-child(10)').remove()
+
+        $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
+        $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
+        $('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+        $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
+        $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
+        $('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('resolucao'))
+        $('.ms-formtable tr:nth-child(8) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
+    }
+
+    if (listItem.get_item('statusSolicitacao') == "Reaberto") {
+
+        // Verifica se o usuário atual é membro do grupo especificado
+        CurrentUserMemberOfGroup("Suporte", function (isCurrentUserInGroup) {
+            if (isCurrentUserInGroup) {
+
+                $('.ms-formtable tr:nth-child(10)').remove()
+                $('.ms-formtable tr:nth-child(10)').remove()
+                $('.ms-formtable tr:nth-child(10)').remove()
+
+                $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
+                $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
+                $('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+                $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
+                $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
+                $('.ms-formtable tr:nth-child(8) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
+                $('.ms-formtable tr:nth-child(9) td:last-child').text(listItem.get_item('observacoes'))
+            }
+            else {
+
+                $('.ms-formtable tr:nth-child(10)').remove()
+                $('.ms-formtable tr:nth-child(10)').remove()
+                $('.ms-formtable tr:nth-child(10)').remove()
+
+                $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
+                $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
+                $('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+                $('.ms-formtable tr:nth-child(4) td:last-child').text(listItem.get_item('statusSolicitacao'))
+                $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
+                $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
+                $('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('resolucao'))
+                $('.ms-formtable tr:nth-child(8) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
+                $('.ms-formtable tr:nth-child(9) td:last-child').text(listItem.get_item('observacoes'))
+
+                // remove a ribbon e o botão de salvar do form
+                $("#s4-ribbonrow").remove()
+                $('.ms-toolbar:nth-child(3)').remove()
+            }
+        });
+    }
 }
 
 function onFailedCallback(sender, args) {
     var myText = '<p>The request failed: <br>';
     myText += 'Message: ' + args.get_message() + '<br>';
-    //myDiv.innerHTML = myText;
-
+    
     console.log(myText)
 }
-
-
 
 function CurrentUserMemberOfGroup(groupName, OnComplete) {
     var currentUser = clientContext.get_web().get_currentUser();
