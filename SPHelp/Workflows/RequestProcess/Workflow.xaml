@@ -49,7 +49,42 @@
       <Variable x:TypeArguments="s:DateTime" Name="dataCriacao" />
       <Variable x:TypeArguments="x:Boolean" Name="SalvarComoRascunho" />
       <Variable x:TypeArguments="x:Int32" Name="nomeSolicitante" />
+      <Variable x:TypeArguments="x:Int32" Name="itemId" />
+      <Variable x:TypeArguments="x:String" Name="listaDeChamados" />
+      <Variable x:TypeArguments="x:String" Name="siteURL" />
+      <Variable x:TypeArguments="p:DynamicValue" Name="dv_1" />
     </Sequence.Variables>
+    <p1:WebUri sap2010:WorkflowViewState.IdRef="WebUri_2">
+      <p1:WebUri.Result>
+        <OutArgument x:TypeArguments="x:String">
+          <mca:CSharpReference x:TypeArguments="x:String">siteURL</mca:CSharpReference>
+        </OutArgument>
+      </p1:WebUri.Result>
+    </p1:WebUri>
+    <p1:LookupSPList sap2010:WorkflowViewState.IdRef="LookupSPList_1">
+      <p1:LookupSPList.ListId>
+        <InArgument x:TypeArguments="s:Guid">
+          <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/Chamados;}")</mca:CSharpValue>
+        </InArgument>
+      </p1:LookupSPList.ListId>
+      <p1:LookupSPList.Result>
+        <OutArgument x:TypeArguments="p:DynamicValue">
+          <mca:CSharpReference x:TypeArguments="p:DynamicValue">dv_1</mca:CSharpReference>
+        </OutArgument>
+      </p1:LookupSPList.Result>
+    </p1:LookupSPList>
+    <p:GetODataProperties DisplayName="GetDynamicValueProperties" sap2010:WorkflowViewState.IdRef="GetODataProperties_17">
+      <p:GetODataProperties.Source>
+        <InArgument x:TypeArguments="p:DynamicValue">
+          <mca:CSharpValue x:TypeArguments="p:DynamicValue">dv_1</mca:CSharpValue>
+        </InArgument>
+      </p:GetODataProperties.Source>
+      <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+        <OutArgument x:TypeArguments="x:String" x:Key="Title">
+          <mca:CSharpReference x:TypeArguments="x:String">listaDeChamados</mca:CSharpReference>
+        </OutArgument>
+      </scg:Dictionary>
+    </p:GetODataProperties>
     <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" sap2010:WorkflowViewState.IdRef="LookupSPListItem_1">
       <p1:LookupSPListItem.ItemId>
         <InArgument x:TypeArguments="x:Int32">
@@ -85,7 +120,7 @@
           <mca:CSharpReference x:TypeArguments="s:DateTime">dataCriacao</mca:CSharpReference>
         </OutArgument>
         <OutArgument x:TypeArguments="x:Int32" x:Key="ID">
-          <mca:CSharpReference x:TypeArguments="x:Int32">idSolicitacao</mca:CSharpReference>
+          <mca:CSharpReference x:TypeArguments="x:Int32">itemId</mca:CSharpReference>
         </OutArgument>
         <OutArgument x:TypeArguments="x:String" x:Key="Title">
           <mca:CSharpReference x:TypeArguments="x:String">tituloSolicitacao</mca:CSharpReference>
@@ -162,7 +197,7 @@
                 <Variable x:TypeArguments="x:String" Name="groupCategory" />
                 <Variable x:TypeArguments="p:DynamicValue" Name="dv_2" />
                 <Variable x:TypeArguments="p:DynamicValue" Name="dv_3" />
-                <Variable x:TypeArguments="x:Int32" Name="itemId" />
+                <Variable x:TypeArguments="x:String" Name="varResult" />
               </Sequence.Variables>
               <p1:UpdateListItem ItemGuid="{x:Null}" ListItemProperties="{x:Null}" sap2010:WorkflowViewState.IdRef="UpdateListItem_17">
                 <p1:UpdateListItem.ItemId>
@@ -185,7 +220,7 @@
                       <scg:Dictionary x:TypeArguments="x:String, InArgument">
                         <InArgument x:TypeArguments="x:String" x:Key="statusSolicitacao">Aguardando aprovação</InArgument>
                         <InArgument x:TypeArguments="x:String" x:Key="idSolicitacao">
-                          <mca:CSharpValue x:TypeArguments="x:String">idSolicitacao.ToString() + dataCriacao.ToString("ddMMyyyy")</mca:CSharpValue>
+                          <mca:CSharpValue x:TypeArguments="x:String">itemId.ToString() + dataCriacao.ToString("ddMMyyyy")</mca:CSharpValue>
                         </InArgument>
                         <InArgument x:TypeArguments="x:Int32" x:Key="nomeSolicitanteId">
                           <mca:CSharpValue x:TypeArguments="x:Int32">nomeSolicitante</mca:CSharpValue>
@@ -196,66 +231,30 @@
                 </p1:UpdateListItem.ListItemPropertiesDynamicValue>
               </p1:UpdateListItem>
               <p1:WriteToHistory sap2010:WorkflowViewState.IdRef="WriteToHistory_1" Message="Aguardando aprovação" />
-              <p1:LookupSPList>
-                <p1:LookupSPList.ListId>
-                  <InArgument x:TypeArguments="s:Guid">
-                    <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/Parametros;}")</mca:CSharpValue>
+              <p1:WriteToHistory sap2010:WorkflowViewState.IdRef="WriteToHistory_10">
+                <p1:WriteToHistory.Message>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">listaDeChamados</mca:CSharpValue>
                   </InArgument>
-                </p1:LookupSPList.ListId>
-                <p1:LookupSPList.Result>
-                  <OutArgument x:TypeArguments="p:DynamicValue">
-                    <mca:CSharpReference x:TypeArguments="p:DynamicValue">dv_3</mca:CSharpReference>
-                  </OutArgument>
-                </p1:LookupSPList.Result>
-                <sap2010:WorkflowViewState.IdRef>LookupSPList_1</sap2010:WorkflowViewState.IdRef>
-              </p1:LookupSPList>
-              <p:GetODataProperties DisplayName="GetDynamicValueProperties">
-                <p:GetODataProperties.Source>
+                </p1:WriteToHistory.Message>
+              </p1:WriteToHistory>
+              <p:HttpSend sap2010:WorkflowViewState.IdRef="HttpSend_1" Method="POST">
+                <p:HttpSend.RequestHeaders>
                   <InArgument x:TypeArguments="p:DynamicValue">
-                    <mca:CSharpValue x:TypeArguments="p:DynamicValue">dv_3</mca:CSharpValue>
+                    <p:SetDynamicValueProperties>
+                      <scg:Dictionary x:TypeArguments="x:String, InArgument">
+                        <InArgument x:TypeArguments="x:String" x:Key="Accept">application/json;odata=verbose</InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="Content-Type">application/json;odata=verbose</InArgument>
+                      </scg:Dictionary>
+                    </p:SetDynamicValueProperties>
                   </InArgument>
-                </p:GetODataProperties.Source>
-                <scg:Dictionary x:TypeArguments="x:String, OutArgument">
-                  <OutArgument x:TypeArguments="x:Int32" x:Key="ID">
-                    <mca:CSharpReference x:TypeArguments="x:Int32">itemId</mca:CSharpReference>
-                  </OutArgument>
-                </scg:Dictionary>
-                <sap2010:WorkflowViewState.IdRef>GetODataProperties_19</sap2010:WorkflowViewState.IdRef>
-              </p:GetODataProperties>
-              <AddToCollection x:TypeArguments="x:String" DisplayName="AddToCollection&lt;String&gt;">
-                <InArgument x:TypeArguments="scg:ICollection(x:String)">
-                  <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">itemId</mca:CSharpValue>
-                </InArgument>
-                <sap2010:WorkflowViewState.IdRef>AddToCollection`1_1</sap2010:WorkflowViewState.IdRef>
-              </AddToCollection>
-              <ForEach x:TypeArguments="x:String" DisplayName="ForEach&lt;String&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_4">
-                <ForEach.Values>
-                  <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
-                    <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)">dv_3</mca:CSharpValue>
+                </p:HttpSend.RequestHeaders>
+                <p:HttpSend.Uri>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String">string.Format(siteURL + "_api/lists/getByTitle('" + listaDeChamados + "')/items(" + itemId + ")/breakroleinheritance(copyRoleAssignments = false, clearSubscopes = true)")</mca:CSharpValue>
                   </InArgument>
-                </ForEach.Values>
-                <ActivityAction x:TypeArguments="x:String">
-                  <ActivityAction.Argument>
-                    <DelegateInArgument x:TypeArguments="x:String" Name="item" />
-                  </ActivityAction.Argument>
-                  <If sap2010:WorkflowViewState.IdRef="If_2">
-                    <If.Condition>
-                      <InArgument x:TypeArguments="x:Boolean">
-                        <mca:CSharpValue x:TypeArguments="x:Boolean">itemId &gt; 0</mca:CSharpValue>
-                      </InArgument>
-                    </If.Condition>
-                    <If.Then>
-                      <p1:WriteToHistory sap2010:WorkflowViewState.IdRef="WriteToHistory_10">
-                        <p1:WriteToHistory.Message>
-                          <InArgument x:TypeArguments="x:String">
-                            <mca:CSharpValue x:TypeArguments="x:String">nomeDoGrupo</mca:CSharpValue>
-                          </InArgument>
-                        </p1:WriteToHistory.Message>
-                      </p1:WriteToHistory>
-                    </If.Then>
-                  </If>
-                </ActivityAction>
-              </ForEach>
+                </p:HttpSend.Uri>
+              </p:HttpSend>
             </Sequence>
           </State.Entry>
           <State.Transitions>
@@ -1032,11 +1031,28 @@
         <Variable x:TypeArguments="p:DynamicValue" Name="parametros_list" />
       </StateMachine.Variables>
     </StateMachine>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="LookupSPListItem_1" sap:VirtualizedContainerService.HintSize="1035,89">
+      <sap2010:ViewStateData Id="WebUri_2" sap:VirtualizedContainerService.HintSize="1035.2,68.8" />
+      <sap2010:ViewStateData Id="LookupSPList_1" sap:VirtualizedContainerService.HintSize="1035.2,91.2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
+              <msdad:ViewStateNameValue x:Key="ListId" DisplayName="Chamados" Value="Lists/Chamados" />
+            </scg:Dictionary>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetODataProperties_17" sap:VirtualizedContainerService.HintSize="1035.2,92.8">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:String x:Key="Properties.SelectedEntityType">SharePoint_List</x:String>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LookupSPListItem_1" sap:VirtualizedContainerService.HintSize="1035.2,91.2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1046,14 +1062,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GetODataProperties_1" sap:VirtualizedContainerService.HintSize="1035,92">
+      <sap2010:ViewStateData Id="GetODataProperties_1" sap:VirtualizedContainerService.HintSize="1035.2,92.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:String x:Key="Properties.SelectedEntityType">Lists/Chamados</x:String>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="UpdateListItem_14" sap:VirtualizedContainerService.HintSize="200,68">
+      <sap2010:ViewStateData Id="UpdateListItem_14" sap:VirtualizedContainerService.HintSize="200,68.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1064,8 +1080,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="1035,218" />
-      <sap2010:ViewStateData Id="WaitForFieldChange_3" sap:VirtualizedContainerService.HintSize="1035,68">
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="1035.2,220.8" />
+      <sap2010:ViewStateData Id="WaitForFieldChange_3" sap:VirtualizedContainerService.HintSize="1035.2,68.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1076,39 +1092,20 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="UpdateListItem_17" sap:VirtualizedContainerService.HintSize="494,68">
+      <sap2010:ViewStateData Id="UpdateListItem_17" sap:VirtualizedContainerService.HintSize="200,68.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
               <msdad:ViewStateNameValue x:Key="ItemId" DisplayName="(current item)" Value="$CurrentItemId" />
               <msdad:ViewStateNameValue x:Key="ListId" DisplayName="(current list)" Value="$CurrentListId" />
             </scg:Dictionary>
-            <x:String x:Key="ListItemPropertiesDynamicValue.SelectedEntityType"></x:String>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteToHistory_1" sap:VirtualizedContainerService.HintSize="494,68" />
-      <sap2010:ViewStateData Id="LookupSPList_1" sap:VirtualizedContainerService.HintSize="494,89">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
-              <msdad:ViewStateNameValue x:Key="ListId" DisplayName="Parametros" Value="Lists/Parametros" />
-            </scg:Dictionary>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GetODataProperties_19" sap:VirtualizedContainerService.HintSize="494,92">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:String x:Key="Properties.SelectedEntityType">Lists/Parametros</x:String>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="AddToCollection`1_1" sap:VirtualizedContainerService.HintSize="494,22" />
-      <sap2010:ViewStateData Id="WriteToHistory_10" sap:VirtualizedContainerService.HintSize="200,68" />
-      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,218" />
-      <sap2010:ViewStateData Id="ForEach`1_4" sap:VirtualizedContainerService.HintSize="494,368" />
-      <sap2010:ViewStateData Id="Sequence_11" sap:VirtualizedContainerService.HintSize="516,1031">
+      <sap2010:ViewStateData Id="WriteToHistory_1" sap:VirtualizedContainerService.HintSize="200,68.8" />
+      <sap2010:ViewStateData Id="WriteToHistory_10" sap:VirtualizedContainerService.HintSize="200,68.8" />
+      <sap2010:ViewStateData Id="HttpSend_1" sap:VirtualizedContainerService.HintSize="200,62.4" />
+      <sap2010:ViewStateData Id="Sequence_11" sap:VirtualizedContainerService.HintSize="222.4,513.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1164,7 +1161,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="LookupSPListItem_9" sap:VirtualizedContainerService.HintSize="247,89">
+      <sap2010:ViewStateData Id="LookupSPListItem_9" sap:VirtualizedContainerService.HintSize="248,91.2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1174,24 +1171,24 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GetODataProperties_12" sap:VirtualizedContainerService.HintSize="247,92">
+      <sap2010:ViewStateData Id="GetODataProperties_12" sap:VirtualizedContainerService.HintSize="248,92.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:String x:Key="Properties.SelectedEntityType">Lists/Chamados</x:String>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteToHistory_4" sap:VirtualizedContainerService.HintSize="247,68" />
-      <sap2010:ViewStateData Id="LookupSPGroup_2" sap:VirtualizedContainerService.HintSize="247,89" />
-      <sap2010:ViewStateData Id="GetODataProperties_11" sap:VirtualizedContainerService.HintSize="247,92">
+      <sap2010:ViewStateData Id="WriteToHistory_4" sap:VirtualizedContainerService.HintSize="248,68.8" />
+      <sap2010:ViewStateData Id="LookupSPGroup_2" sap:VirtualizedContainerService.HintSize="248,91.2" />
+      <sap2010:ViewStateData Id="GetODataProperties_11" sap:VirtualizedContainerService.HintSize="248,92.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:String x:Key="Properties.SelectedEntityType">SharePoint_Group</x:String>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Email_2" sap:VirtualizedContainerService.HintSize="247,68" />
-      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="269,822">
+      <sap2010:ViewStateData Id="Email_2" sap:VirtualizedContainerService.HintSize="248,68.8" />
+      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="270.4,830.4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1233,8 +1230,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteToHistory_5" sap:VirtualizedContainerService.HintSize="200,68" />
-      <sap2010:ViewStateData Id="Sequence_15" sap:VirtualizedContainerService.HintSize="222,192">
+      <sap2010:ViewStateData Id="WriteToHistory_5" sap:VirtualizedContainerService.HintSize="200,68.8" />
+      <sap2010:ViewStateData Id="Sequence_15" sap:VirtualizedContainerService.HintSize="222.4,193.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1416,11 +1413,11 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_7" sap:VirtualizedContainerService.HintSize="114,61">
+      <sap2010:ViewStateData Id="State_7" sap:VirtualizedContainerService.HintSize="114.4,61.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">562.8,619.2</av:Point>
-            <av:Size x:Key="ShapeSize">114,61</av:Size>
+            <av:Size x:Key="ShapeSize">114.4,61.6</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -1428,7 +1425,7 @@
       <sap2010:ViewStateData Id="Transition_11" sap:VirtualizedContainerService.HintSize="748.8,1636">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:PointCollection x:Key="ConnectorLocation">660,430.8 660,460.8 620,460.8 620,619.2</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">660,430.8 660,460.8 619.6,460.8 619.6,619.2</av:PointCollection>
             <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">38</x:Int32>
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1436,11 +1433,11 @@
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WriteToHistory_8" sap:VirtualizedContainerService.HintSize="200,68" />
-      <sap2010:ViewStateData Id="State_2" sap:VirtualizedContainerService.HintSize="161,77">
+      <sap2010:ViewStateData Id="State_2" sap:VirtualizedContainerService.HintSize="161.6,77.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">859.2,421.2</av:Point>
-            <av:Size x:Key="ShapeSize">161,77</av:Size>
+            <av:Size x:Key="ShapeSize">161.6,77.6</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
             <x:Double x:Key="StateContainerWidth">147</x:Double>
             <x:Double x:Key="StateContainerHeight">41.079999999999927</x:Double>
@@ -1450,18 +1447,18 @@
       <sap2010:ViewStateData Id="Transition_12" sap:VirtualizedContainerService.HintSize="747,1621">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <av:PointCollection x:Key="ConnectorLocation">660,430.8 660,460 859.2,460</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">660,430.8 660,459.6 859.2,459.6</av:PointCollection>
             <x:Int32 x:Key="SrcConnectionPointIndex">39</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">37</x:Int32>
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_6" sap:VirtualizedContainerService.HintSize="114,61">
+      <sap2010:ViewStateData Id="State_6" sap:VirtualizedContainerService.HintSize="114.4,61.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">602.8,369.2</av:Point>
-            <av:Size x:Key="ShapeSize">114,61</av:Size>
+            <av:Size x:Key="ShapeSize">114.4,61.6</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -1471,15 +1468,15 @@
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Int32 x:Key="SrcConnectionPointIndex">36</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">37</x:Int32>
-            <av:PointCollection x:Key="ConnectorLocation">453.6,329.7 483.6,329.7 483.6,400.2 602.8,400.2</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">454.4,330 484.4,330 484.4,399.6 602.8,399.6</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_4" sap:VirtualizedContainerService.HintSize="148,65">
+      <sap2010:ViewStateData Id="State_4" sap:VirtualizedContainerService.HintSize="148.8,65.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">305.6,297.2</av:Point>
-            <av:Size x:Key="ShapeSize">148,65</av:Size>
+            <av:Size x:Key="ShapeSize">148.8,65.6</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
             <x:Double x:Key="StateContainerWidth">134</x:Double>
             <x:Double x:Key="StateContainerHeight">29</x:Double>
@@ -1496,7 +1493,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="LookupSPListItem_13" sap:VirtualizedContainerService.HintSize="247,89">
+      <sap2010:ViewStateData Id="LookupSPListItem_13" sap:VirtualizedContainerService.HintSize="248,91.2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1506,15 +1503,15 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GetODataProperties_16" sap:VirtualizedContainerService.HintSize="247,92">
+      <sap2010:ViewStateData Id="GetODataProperties_16" sap:VirtualizedContainerService.HintSize="248,92.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:String x:Key="Properties.SelectedEntityType">Lists/Chamados</x:String>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteToHistory_9" sap:VirtualizedContainerService.HintSize="247,68" />
-      <sap2010:ViewStateData Id="Sequence_18" sap:VirtualizedContainerService.HintSize="269,453">
+      <sap2010:ViewStateData Id="WriteToHistory_9" sap:VirtualizedContainerService.HintSize="248,68.8" />
+      <sap2010:ViewStateData Id="Sequence_18" sap:VirtualizedContainerService.HintSize="270.4,457.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1548,11 +1545,11 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_5" sap:VirtualizedContainerService.HintSize="202,80">
+      <sap2010:ViewStateData Id="State_5" sap:VirtualizedContainerService.HintSize="202.4,80.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">8.8,579.6</av:Point>
-            <av:Size x:Key="ShapeSize">202,80</av:Size>
+            <av:Size x:Key="ShapeSize">202.4,80.8</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
             <x:Double x:Key="StateContainerWidth">188</x:Double>
             <x:Double x:Key="StateContainerHeight">44.040000000000077</x:Double>
@@ -1569,11 +1566,11 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_1" sap:VirtualizedContainerService.HintSize="155,73">
+      <sap2010:ViewStateData Id="State_1" sap:VirtualizedContainerService.HintSize="155.2,73.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">32.4,233.2</av:Point>
-            <av:Size x:Key="ShapeSize">155,73</av:Size>
+            <av:Size x:Key="ShapeSize">155.2,73.6</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
             <x:Double x:Key="StateContainerWidth">141</x:Double>
             <x:Double x:Key="StateContainerHeight">37</x:Double>
@@ -1638,18 +1635,18 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="542,1420">
+      <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="325.6,904">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">154,61.5</av:Point>
-            <av:Size x:Key="ShapeSize">192,77</av:Size>
+            <av:Size x:Key="ShapeSize">192,77.6</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
             <x:Double x:Key="StateContainerWidth">178</x:Double>
             <x:Double x:Key="StateContainerHeight">41.080000000000041</x:Double>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="StateMachine_1" sap:VirtualizedContainerService.HintSize="1035,757">
+      <sap2010:ViewStateData Id="StateMachine_1" sap:VirtualizedContainerService.HintSize="1035.2,757.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1661,14 +1658,14 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="1057,1508">
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="1057.6,1888.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="SPHelp.Workflows.Request_Process.Workflow_1" sap:VirtualizedContainerService.HintSize="1097,1588" />
+      <sap2010:ViewStateData Id="SPHelp.Workflows.Request_Process.Workflow_1" sap:VirtualizedContainerService.HintSize="1097.6,1596" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
