@@ -1,18 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <List xmlns:ows="Microsoft SharePoint" Title="Chamados" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/Chamados" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
-    <ContentTypes>
-      
-      
-    <ContentType ID="0x010050ac4126aca34c45be80d98f8b1eaf26" Name="ListFieldsContentType"><FieldRefs><FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" /><FieldRef ID="{d8ba25f5-d1d8-4f36-96a7-5d33fcda6dd2}" Name="categoriaSolicitacao" /><FieldRef ID="{23ff33ed-12c0-42b5-83db-7f39cba4bdca}" Name="descricaoSolicitacao" /><FieldRef ID="{772888bb-02e3-4852-b191-416456218c9f}" Name="statusSolicitacao" /><FieldRef ID="{c7728785-7d80-4030-b498-44531bd9929e}" Name="idSolicitacao" /><FieldRef ID="{7f175cc8-0ae1-4344-a8a1-a8a672bc9d13}" Name="nomeSolicitante" /><FieldRef ID="{9c5b90db-652a-4063-b7e5-a6ef6f0bed30}" Name="prioridadeSolicitacao" /><FieldRef ID="{82eab6a2-9e41-4916-9aa7-53cb2f04c1cd}" Name="criticidade" /><FieldRef ID="{00d61f6e-bdd3-476a-9665-7824ce49ecce}" Name="resolucao" /><FieldRef ID="{1a32e773-33d2-4e3a-b7a0-2c360cc050c1}" Name="urlPaginaAfetada" /><FieldRef ID="{ff811cef-b5b4-406f-b468-7cb36d3ac05f}" Name="observacoes" /><FieldRef ID="{a987647d-2956-4c44-8ca6-66a415e3b0f3}" Name="SalvarComoRascunho" /><FieldRef ID="{fd757f42-556a-4314-a739-9dea961a5fc7}" Name="InformacoesAdicionais" /><FieldRef ID="{fe4f01b3-8c2c-4114-9181-ad84e250159f}" Name="InformacoesAdicionaisNecessarias" /></FieldRefs></ContentType><ContentTypeRef ID="0x01">
+    <ContentTypes>      
+      <ContentType ID="0x010050ac4126aca34c45be80d98f8b1eaf26" Name="ListFieldsContentType">
+        <FieldRefs>
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" />
+          <FieldRef ID="{d8ba25f5-d1d8-4f36-96a7-5d33fcda6dd2}" Name="categoriaSolicitacao" />
+          <FieldRef ID="{23ff33ed-12c0-42b5-83db-7f39cba4bdca}" Name="descricaoSolicitacao" />
+          <FieldRef ID="{772888bb-02e3-4852-b191-416456218c9f}" Name="statusSolicitacao" />
+          <FieldRef ID="{c7728785-7d80-4030-b498-44531bd9929e}" Name="idSolicitacao" />
+          <FieldRef ID="{7f175cc8-0ae1-4344-a8a1-a8a672bc9d13}" Name="nomeSolicitante" />
+          <FieldRef ID="{9c5b90db-652a-4063-b7e5-a6ef6f0bed30}" Name="prioridadeSolicitacao" />
+          <FieldRef ID="{82eab6a2-9e41-4916-9aa7-53cb2f04c1cd}" Name="criticidade" />          
+          <FieldRef ID="{1a32e773-33d2-4e3a-b7a0-2c360cc050c1}" Name="urlPaginaAfetada" />
+          <FieldRef ID="{ff811cef-b5b4-406f-b468-7cb36d3ac05f}" Name="observacoes" />
+          <FieldRef ID="{a987647d-2956-4c44-8ca6-66a415e3b0f3}" Name="SalvarComoRascunho" />          
+          <FieldRef ID="{ed1af7a6-4153-4be4-9b6e-9831f11dce32}" Name="justificativaRejeicao" />
+          <FieldRef ID="{fd757f42-556a-4314-a739-9dea961a5fc7}" Name="InformacoesAdicionais" />
+          <FieldRef ID="{00d61f6e-bdd3-476a-9665-7824ce49ecce}" Name="resolucao" />
+        </FieldRefs>
+      </ContentType>
+      <ContentTypeRef ID="0x01">
         <Folder TargetName="Item" />
-      </ContentTypeRef><ContentTypeRef ID="0x0120" /></ContentTypes>
-    <Fields>
-      
-    
-      <Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Type="Text" Name="Title" DisplayName="Título da solicitação" Required="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" MaxLength="255" Description="Informe resumidamente um nome para o problema ocorrido." /><Field Name="categoriaSolicitacao" ID="{d8ba25f5-d1d8-4f36-96a7-5d33fcda6dd2}" DisplayName="Categoria" Type="Choice"><CHOICES><CHOICE>Acesso</CHOICE><CHOICE>Internet</CHOICE><CHOICE>Intranet</CHOICE><CHOICE>Microinformática</CHOICE><CHOICE>Sistemas</CHOICE></CHOICES></Field><Field Name="descricaoSolicitacao" ID="{23ff33ed-12c0-42b5-83db-7f39cba4bdca}" DisplayName="Descrição" Type="Note" ShowInVersionHistory="TRUE" /><Field Name="statusSolicitacao" ID="{772888bb-02e3-4852-b191-416456218c9f}" DisplayName="Status" Type="Choice" ShowInNewForm="FALSE"><CHOICES><CHOICE>Aprovado</CHOICE><CHOICE>Em andamento</CHOICE><CHOICE>Fechado</CHOICE><CHOICE>Aguardando informações</CHOICE><CHOICE>Reaberto</CHOICE><CHOICE>Rejeitado</CHOICE><CHOICE>Aguardando aprovação</CHOICE><CHOICE>Aberto</CHOICE><CHOICE>Rascunho</CHOICE></CHOICES></Field><Field Name="idSolicitacao" ID="{c7728785-7d80-4030-b498-44531bd9929e}" DisplayName="ID da solicitação" Type="Text" ShowInNewForm="FALSE" ShowInEditForm="FALSE" /><Field Name="nomeSolicitante" ID="{7f175cc8-0ae1-4344-a8a1-a8a672bc9d13}" DisplayName="Solicitante" Type="User" List="UserInfo" ShowInNewForm="FALSE" ShowInEditForm="FALSE" /><Field Name="prioridadeSolicitacao" ID="{9c5b90db-652a-4063-b7e5-a6ef6f0bed30}" DisplayName="Prioridade" Type="Choice"><CHOICES><CHOICE>0</CHOICE><CHOICE>1</CHOICE><CHOICE>2</CHOICE><CHOICE>3</CHOICE></CHOICES></Field><Field Name="criticidade" ID="{82eab6a2-9e41-4916-9aa7-53cb2f04c1cd}" DisplayName="Criticidade" Type="Choice"><CHOICES><CHOICE>Alta</CHOICE><CHOICE>Média</CHOICE><CHOICE>Baixa</CHOICE></CHOICES></Field><Field Name="resolucao" ID="{00d61f6e-bdd3-476a-9665-7824ce49ecce}" DisplayName="Resolução" Type="Note" ShowInNewForm="FALSE" ShowInVersionHistory="TRUE" /><Field Name="urlPaginaAfetada" ID="{1a32e773-33d2-4e3a-b7a0-2c360cc050c1}" DisplayName="URL da Página Afetada" Type="URL" /><Field Name="observacoes" ID="{ff811cef-b5b4-406f-b468-7cb36d3ac05f}" DisplayName="Observações" Type="Note" ShowInNewForm="FALSE" /><Field Name="SalvarComoRascunho" ID="{a987647d-2956-4c44-8ca6-66a415e3b0f3}" DisplayName="Salvar como rascunho" Type="Boolean" Description="Marque esta opção se desejar apenas salvar o documento e continuar preenchendo posteriormente. Não será enviado para aprovação enquanto a caixa de seleção estiver marcada." /><Field Name="InformacoesAdicionais" ID="{fd757f42-556a-4314-a739-9dea961a5fc7}" DisplayName="Informações adicionais" Type="Boolean" ShowInNewForm="FALSE" /><Field Name="InformacoesAdicionaisNecessarias" ID="{fe4f01b3-8c2c-4114-9181-ad84e250159f}" DisplayName="Informações adicionais necessárias" Type="Note" ShowInNewForm="FALSE" ShowInVersionHistory="TRUE" AppendOnly="TRUE" /></Fields>
-    <Views>
-      
+      </ContentTypeRef>
+      <ContentTypeRef ID="0x0120" />
+      </ContentTypes>
+        <Fields>
+          <Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Type="Text" Name="Title" DisplayName="Título da solicitação" Required="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" MaxLength="255" Description="Informe resumidamente um nome para o problema ocorrido." />
+          <Field Name="categoriaSolicitacao" ID="{d8ba25f5-d1d8-4f36-96a7-5d33fcda6dd2}" DisplayName="Categoria" Type="Choice"><CHOICES><CHOICE>Acesso</CHOICE><CHOICE>Internet</CHOICE><CHOICE>Intranet</CHOICE><CHOICE>Microinformática</CHOICE><CHOICE>Sistemas</CHOICE></CHOICES></Field>
+          <Field Name="descricaoSolicitacao" ID="{23ff33ed-12c0-42b5-83db-7f39cba4bdca}" DisplayName="Descrição" Type="Note" ShowInVersionHistory="TRUE" />
+          <Field Name="statusSolicitacao" ID="{772888bb-02e3-4852-b191-416456218c9f}" DisplayName="Status" Type="Choice" ShowInNewForm="FALSE"><CHOICES><CHOICE>Aprovado</CHOICE><CHOICE>Em andamento</CHOICE><CHOICE>Fechado</CHOICE><CHOICE>Aguardando informações</CHOICE><CHOICE>Reaberto</CHOICE><CHOICE>Rejeitado</CHOICE><CHOICE>Aguardando aprovação</CHOICE><CHOICE>Aberto</CHOICE><CHOICE>Rascunho</CHOICE></CHOICES></Field>
+          <Field Name="idSolicitacao" ID="{c7728785-7d80-4030-b498-44531bd9929e}" DisplayName="ID da solicitação" Type="Text" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />
+          <Field Name="nomeSolicitante" ID="{7f175cc8-0ae1-4344-a8a1-a8a672bc9d13}" DisplayName="Solicitante" Type="User" List="UserInfo" ShowInNewForm="FALSE" ShowInEditForm="FALSE" />
+          <Field Name="prioridadeSolicitacao" ID="{9c5b90db-652a-4063-b7e5-a6ef6f0bed30}" DisplayName="Prioridade" Type="Choice"><CHOICES><CHOICE>0</CHOICE><CHOICE>1</CHOICE><CHOICE>2</CHOICE><CHOICE>3</CHOICE></CHOICES></Field>
+          <Field Name="criticidade" ID="{82eab6a2-9e41-4916-9aa7-53cb2f04c1cd}" DisplayName="Criticidade" Type="Choice"><CHOICES><CHOICE>Alta</CHOICE><CHOICE>Média</CHOICE><CHOICE>Baixa</CHOICE></CHOICES></Field>
+          <Field Name="urlPaginaAfetada" ID="{1a32e773-33d2-4e3a-b7a0-2c360cc050c1}" DisplayName="URL da Página Afetada" Type="URL" />
+          <Field Name="observacoes" ID="{ff811cef-b5b4-406f-b468-7cb36d3ac05f}" DisplayName="Observações" Type="Note" ShowInNewForm="FALSE" />
+          <Field Name="SalvarComoRascunho" ID="{a987647d-2956-4c44-8ca6-66a415e3b0f3}" DisplayName="Salvar como rascunho" Type="Boolean" Description="Marque esta opção se desejar apenas salvar o documento e continuar preenchendo posteriormente. Não será enviado para aprovação enquanto a caixa de seleção estiver marcada." />        
+          <Field Name="justificativaRejeicao" ID="{ed1af7a6-4153-4be4-9b6e-9831f11dce32}" DisplayName="Justificativa" Type="Note" ShowInNewForm="FALSE" />
+          <Field Name="InformacoesAdicionais" ID="{fd757f42-556a-4314-a739-9dea961a5fc7}" DisplayName="Informações adicionais" Type="Note" ShowInNewForm="FALSE" ShowInVersionHistory="TRUE" AppendOnly="TRUE" />
+          <Field Name="resolucao" ID="{00d61f6e-bdd3-476a-9665-7824ce49ecce}" DisplayName="Resolução" Type="Note" ShowInNewForm="FALSE" ShowInVersionHistory="TRUE" />
+        </Fields>
+    <Views>      
       
     <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
         <Toolbar Type="Standard" />
@@ -36,12 +65,24 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <JSLink>clienttemplates.js</JSLink>
         <RowLimit Paged="TRUE">30</RowLimit>
-        <ViewFields>
-          
-        <FieldRef Name="idSolicitacao" /><FieldRef Name="LinkTitle"></FieldRef><FieldRef Name="categoriaSolicitacao" /><FieldRef Name="prioridadeSolicitacao" /><FieldRef Name="criticidade" /><FieldRef Name="descricaoSolicitacao" /><FieldRef Name="urlPaginaAfetada" /><FieldRef Name="nomeSolicitante" /><FieldRef Name="statusSolicitacao" /><FieldRef Name="resolucao" /><FieldRef Name="observacoes" /><FieldRef Name="SalvarComoRascunho" /><FieldRef Name="InformacoesAdicionais" /><FieldRef Name="InformacoesAdicionaisNecessarias" /></ViewFields>
+        <ViewFields>          
+          <FieldRef Name="idSolicitacao" />
+          <FieldRef Name="LinkTitle"></FieldRef>
+          <FieldRef Name="categoriaSolicitacao" />
+          <FieldRef Name="prioridadeSolicitacao" />
+          <FieldRef Name="criticidade" />
+          <FieldRef Name="descricaoSolicitacao" />
+          <FieldRef Name="urlPaginaAfetada" />
+          <FieldRef Name="nomeSolicitante" />
+          <FieldRef Name="statusSolicitacao" />
+          <FieldRef Name="observacoes" />
+          <FieldRef Name="SalvarComoRascunho" />
+          <FieldRef Name="justificativaRejeicao" />
+          <FieldRef Name="InformacoesAdicionais" />
+          <FieldRef Name="resolucao" />
+        </ViewFields>
         <Query>
-          <OrderBy>
-            
+          <OrderBy>            
           <FieldRef Name="ID"></FieldRef></OrderBy>
         </Query>
         <ParameterBindings>

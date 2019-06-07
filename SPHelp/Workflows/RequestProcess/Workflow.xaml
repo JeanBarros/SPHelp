@@ -342,7 +342,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
               <Transition.Trigger>
                 <Sequence x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="Sequence_2">
                   <Sequence.Variables>
-                    <Variable x:TypeArguments="p:DynamicValue" Name="dv_1" />
+                    <Variable x:TypeArguments="x:String" Name="justificativaRejeicao" />
                   </Sequence.Variables>
                   <Pick sap2010:WorkflowViewState.IdRef="Pick_2">
                     <PickBranch DisplayName="Branch1" sap2010:WorkflowViewState.IdRef="PickBranch_3">
@@ -427,6 +427,12 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
                       <OutArgument x:TypeArguments="x:String" x:Key="statusSolicitacao">
                         <mca:CSharpReference x:TypeArguments="x:String">statusSolicitacao</mca:CSharpReference>
                       </OutArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="descricaoSolicitacao">
+                        <mca:CSharpReference x:TypeArguments="x:String">descricaoSolicitacao</mca:CSharpReference>
+                      </OutArgument>
+                      <OutArgument x:TypeArguments="x:String" x:Key="justificativaRejeicao">
+                        <mca:CSharpReference x:TypeArguments="x:String">justificativaRejeicao</mca:CSharpReference>
+                      </OutArgument>
                     </scg:Dictionary>
                   </p:GetODataProperties>
                 </Sequence>
@@ -437,6 +443,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
                     <Sequence sap2010:WorkflowViewState.IdRef="Sequence_12">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="p:DynamicValue" Name="dv_2" />
+                        <Variable x:TypeArguments="x:String" Name="observacoesSolicitacao" />
                       </Sequence.Variables>
                       <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" sap2010:WorkflowViewState.IdRef="LookupSPListItem_9">
                         <p1:LookupSPListItem.ItemId>
@@ -474,6 +481,9 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
                           </OutArgument>
                           <OutArgument x:TypeArguments="x:String" x:Key="InformacoesAdicionais">
                             <mca:CSharpReference x:TypeArguments="x:String">informacoesAdicionais</mca:CSharpReference>
+                          </OutArgument>
+                          <OutArgument x:TypeArguments="x:String" x:Key="observacoes">
+                            <mca:CSharpReference x:TypeArguments="x:String">observacoesSolicitacao</mca:CSharpReference>
                           </OutArgument>
                         </scg:Dictionary>
                       </p:GetODataProperties>
@@ -514,7 +524,8 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
                             <p1:Email.Body>
                               <InArgument x:TypeArguments="x:String">
                                 <mca:CSharpValue x:TypeArguments="x:String" xml:space="preserve">$"&lt;p&gt;O chamado número {idSolicitacao} está aguardando atendimento.&lt;br/&gt;&lt;br/&gt;" +
-$"Solicitação: {tituloSolicitacao}&lt;br/&gt;Descrição: {descricaoSolicitacao}&lt;br/&gt;&lt;br/&gt;" +
+$"Solicitação: {tituloSolicitacao}&lt;br/&gt;Descrição: {descricaoSolicitacao}&lt;br/&gt;" +
+$"Observações: {observacoesSolicitacao}&lt;br/&gt;&lt;br/&gt;" +
 $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={siteURL}Lists/Chamados/AllItems.aspx'&gt;Clique no link &lt;/a&gt; para acessar o item.&lt;/p&gt;"</mca:CSharpValue>
                               </InArgument>
                             </p1:Email.Body>
@@ -532,27 +543,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
                         </If.Then>
                         <If.Else>
                           <Sequence sap2010:WorkflowViewState.IdRef="Sequence_19">
-                            <p1:Email AdditionalHeaders="{x:Null}" BCC="{x:Null}" CC="{x:Null}" DisplayName="Email para equipe Suporte - Mais informações" sap2010:WorkflowViewState.IdRef="Email_7">
-                              <p1:Email.Body>
-                                <InArgument x:TypeArguments="x:String">
-                                  <mca:CSharpValue x:TypeArguments="x:String" xml:space="preserve">$"&lt;p&gt;O chamado número {idSolicitacao} está aguardando atendimento.&lt;br/&gt;&lt;br/&gt;" +
-$"Solicitação: {tituloSolicitacao}&lt;br/&gt;Descrição: {descricaoSolicitacao}&lt;br/&gt;" +
-$"Informações adicionais: {informacoesAdicionais}&lt;br/&gt;&lt;br/&gt;" +
-$"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={siteURL}Lists/Chamados/AllItems.aspx'&gt;Clique no link &lt;/a&gt; para acessar o item.&lt;/p&gt;"</mca:CSharpValue>
-                                </InArgument>
-                              </p1:Email.Body>
-                              <p1:Email.Subject>
-                                <InArgument x:TypeArguments="x:String">
-                                  <mca:CSharpValue x:TypeArguments="x:String">"Solicitação " + idSolicitacao + " aguardando atendimento"</mca:CSharpValue>
-                                </InArgument>
-                              </p1:Email.Subject>
-                              <p1:Email.To>
-                                <InArgument x:TypeArguments="sco:Collection(x:String)">
-                                  <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">new System.Collections.ObjectModel.Collection&lt;string&gt;() { groupName.ToString() }</mca:CSharpValue>
-                                </InArgument>
-                              </p1:Email.To>
-                            </p1:Email>
-                            <p1:UpdateListItem ItemGuid="{x:Null}" ListItemProperties="{x:Null}" sap2010:WorkflowViewState.IdRef="UpdateListItem_18">
+                            <p1:UpdateListItem ItemGuid="{x:Null}" ListItemProperties="{x:Null}" sap2010:WorkflowViewState.IdRef="UpdateListItem_20">
                               <p1:UpdateListItem.ItemId>
                                 <InArgument x:TypeArguments="x:Int32">
                                   <p:ExpressionContainerValue x:TypeArguments="x:Int32">
@@ -577,6 +568,25 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
                                 </InArgument>
                               </p1:UpdateListItem.ListItemPropertiesDynamicValue>
                             </p1:UpdateListItem>
+                            <p1:Email AdditionalHeaders="{x:Null}" BCC="{x:Null}" CC="{x:Null}" DisplayName="Email para equipe Suporte - Mais informações" sap2010:WorkflowViewState.IdRef="Email_7">
+                              <p1:Email.Body>
+                                <InArgument x:TypeArguments="x:String">
+                                  <mca:CSharpValue x:TypeArguments="x:String" xml:space="preserve">$"&lt;p&gt;O chamado número {idSolicitacao} está aguardando atendimento.&lt;br/&gt;&lt;br/&gt;" +
+$"Solicitação: {tituloSolicitacao}&lt;br/&gt;Descrição: {descricaoSolicitacao}&lt;br/&gt;&lt;br/&gt;" +
+$"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={siteURL}Lists/Chamados/AllItems.aspx'&gt;Clique no link &lt;/a&gt; para acessar o item.&lt;/p&gt;"</mca:CSharpValue>
+                                </InArgument>
+                              </p1:Email.Body>
+                              <p1:Email.Subject>
+                                <InArgument x:TypeArguments="x:String">
+                                  <mca:CSharpValue x:TypeArguments="x:String">"Solicitação " + idSolicitacao + " aguardando atendimento"</mca:CSharpValue>
+                                </InArgument>
+                              </p1:Email.Subject>
+                              <p1:Email.To>
+                                <InArgument x:TypeArguments="sco:Collection(x:String)">
+                                  <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">new System.Collections.ObjectModel.Collection&lt;string&gt;() { groupName.ToString() }</mca:CSharpValue>
+                                </InArgument>
+                              </p1:Email.To>
+                            </p1:Email>
                             <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" sap2010:WorkflowViewState.IdRef="LookupSPListItem_15">
                               <p1:LookupSPListItem.ItemId>
                                 <InArgument x:TypeArguments="x:Int32">
@@ -607,9 +617,6 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
                               <scg:Dictionary x:TypeArguments="x:String, OutArgument">
                                 <OutArgument x:TypeArguments="x:String" x:Key="statusSolicitacao">
                                   <mca:CSharpReference x:TypeArguments="x:String">statusSolicitacao</mca:CSharpReference>
-                                </OutArgument>
-                                <OutArgument x:TypeArguments="x:String" x:Key="InformacoesAdicionais">
-                                  <mca:CSharpReference x:TypeArguments="x:String">informacoesAdicionais</mca:CSharpReference>
                                 </OutArgument>
                               </scg:Dictionary>
                             </p:GetODataProperties>
@@ -773,6 +780,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
                                     <Sequence sap2010:WorkflowViewState.IdRef="Sequence_16">
                                       <Sequence.Variables>
                                         <Variable x:TypeArguments="p:DynamicValue" Name="dv_1" />
+                                        <Variable x:TypeArguments="x:String" Name="resolucaoSolicitacao" />
                                       </Sequence.Variables>
                                       <p1:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}" sap2010:WorkflowViewState.IdRef="LookupSPListItem_11">
                                         <p1:LookupSPListItem.ItemId>
@@ -805,6 +813,9 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
                                           <OutArgument x:TypeArguments="x:String" x:Key="statusSolicitacao">
                                             <mca:CSharpReference x:TypeArguments="x:String">statusSolicitacao</mca:CSharpReference>
                                           </OutArgument>
+                                          <OutArgument x:TypeArguments="x:String" x:Key="resolucao">
+                                            <mca:CSharpReference x:TypeArguments="x:String">resolucaoSolicitacao</mca:CSharpReference>
+                                          </OutArgument>
                                         </scg:Dictionary>
                                       </p:GetODataProperties>
                                       <p1:WriteToHistory sap2010:WorkflowViewState.IdRef="WriteToHistory_6">
@@ -814,6 +825,26 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
                                           </InArgument>
                                         </p1:WriteToHistory.Message>
                                       </p1:WriteToHistory>
+                                      <p1:Email AdditionalHeaders="{x:Null}" BCC="{x:Null}" CC="{x:Null}" DisplayName="Email para solicitante" sap2010:WorkflowViewState.IdRef="Email_8">
+                                        <p1:Email.Body>
+                                          <InArgument x:TypeArguments="x:String">
+                                            <mca:CSharpValue x:TypeArguments="x:String" xml:space="preserve">$"&lt;p&gt;Caro usuário, o chamado número {idSolicitacao} foi concluído.&lt;/p&gt;" +
+$"Resolução: {resolucaoSolicitacao}&lt;br/&gt;Solicitação: {tituloSolicitacao}&lt;br/&gt;Descrição: {descricaoSolicitacao}&lt;br/&gt;" +
+
+$"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={siteURL}Lists/Chamados/AllItems.aspx'&gt;Clique no link &lt;/a&gt; para acessar o item.&lt;/p&gt;"</mca:CSharpValue>
+                                          </InArgument>
+                                        </p1:Email.Body>
+                                        <p1:Email.Subject>
+                                          <InArgument x:TypeArguments="x:String">
+                                            <mca:CSharpValue x:TypeArguments="x:String">"A solicitação " + idSolicitacao + " requer mais detalhes"</mca:CSharpValue>
+                                          </InArgument>
+                                        </p1:Email.Subject>
+                                        <p1:Email.To>
+                                          <InArgument x:TypeArguments="sco:Collection(x:String)">
+                                            <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">new System.Collections.ObjectModel.Collection&lt;string&gt;() { nomeSolicitante.ToString() }</mca:CSharpValue>
+                                          </InArgument>
+                                        </p1:Email.To>
+                                      </p1:Email>
                                     </Sequence>
                                   </State.Entry>
                                   <State.Transitions>
@@ -1094,8 +1125,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
                                 <p1:Email.Body>
                                   <InArgument x:TypeArguments="x:String">
                                     <mca:CSharpValue x:TypeArguments="x:String" xml:space="preserve">$"&lt;p&gt;Caro usuário, o chamado número {idSolicitacao} requer sua atenção.&lt;/p&gt;" +
-$"Solicitação: {tituloSolicitacao}&lt;br/&gt;Descrição: {descricaoSolicitacao}&lt;br/&gt;" +
-$"Informações adicionais necessárias: {informacoesAdicionais}&lt;br/&gt;&lt;br/&gt;" +
+$"Solicitação: {tituloSolicitacao}&lt;br/&gt;Descrição: {descricaoSolicitacao}&lt;br/&gt;&lt;br/&gt;" +
 
 $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={siteURL}Lists/Chamados/AllItems.aspx'&gt;Clique no link &lt;/a&gt; para acessar o item.&lt;/p&gt;"</mca:CSharpValue>
                                   </InArgument>
@@ -1229,6 +1259,28 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
                       </InArgument>
                     </p1:WriteToHistory.Message>
                   </p1:WriteToHistory>
+                  <p1:Email AdditionalHeaders="{x:Null}" BCC="{x:Null}" CC="{x:Null}" DisplayName="Email para solicitante" sap2010:WorkflowViewState.IdRef="Email_9">
+                    <p1:Email.Body>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String" xml:space="preserve">$"&lt;p&gt;Caro usuário, o chamado número {idSolicitacao} foi rejeitado&lt;/p&gt;" +
+$"Solicitação: {tituloSolicitacao}&lt;br/&gt;" +
+$"Descrição: {descricaoSolicitacao}&lt;br/&gt;" +
+$"Justificativa: {justificativaRejeicao}&lt;br/&gt;&lt;br/&gt;" +
+
+$"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={siteURL}Lists/Chamados/AllItems.aspx'&gt;Clique no link &lt;/a&gt; para acessar o item.&lt;/p&gt;"</mca:CSharpValue>
+                      </InArgument>
+                    </p1:Email.Body>
+                    <p1:Email.Subject>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String">"A solicitação " + idSolicitacao + " foi rejeitada"</mca:CSharpValue>
+                      </InArgument>
+                    </p1:Email.Subject>
+                    <p1:Email.To>
+                      <InArgument x:TypeArguments="sco:Collection(x:String)">
+                        <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">new System.Collections.ObjectModel.Collection&lt;string&gt;() { nomeSolicitante.ToString() }</mca:CSharpValue>
+                      </InArgument>
+                    </p1:Email.To>
+                  </p1:Email>
                 </Sequence>
               </Transition.Action>
               <Transition.Condition>
@@ -1236,6 +1288,9 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
               </Transition.Condition>
             </Transition>
           </State.Transitions>
+          <State.Variables>
+            <Variable x:TypeArguments="x:String" Name="justificativaRejeicao" />
+          </State.Variables>
         </State>
       </StateMachine.InitialState>
       <x:Reference>__ReferenceID6</x:Reference>
@@ -1254,7 +1309,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
         <Variable x:TypeArguments="x:String" Name="informacoesAdicionais" />
       </StateMachine.Variables>
     </StateMachine>
-    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d3tDOlxVc2Vyc1xqZWFuLmJhcnJvc1xPbmVEcml2ZSAtIFNlbm5pdCBUZWNub2xvZ2lhIEx0ZGFcUHJvamV0b3NcU2Vubml0XFNQSGVscFxTUEhlbHBcV29ya2Zsb3dzXFJlcXVlc3RQcm9jZXNzXFdvcmtmbG93LnhhbWzKAisDoQoOAgEBOQU/EQMBtxFABUsXAwGeEUwFVxwDAYURWAVsGwMB9hBtBYQBHAMBrRCFAQWmAQoDAZsQpwEFuwEdAwGLELwBBZ8KFAIBAjwLPFgDAbgRQwtDdQMBqxFIC0hbAwGfEU8LT1MDAZIRVAtUYAMBhhFiC2QoAwGEEWkLaVsDAfgQWwtdKAMB9xB1C3VkAwHqEHsLe1YDAd4QeAt4XgMB0hBwC3BTAwHGEH4LfmIDAboQgQELgQFfAwGuEIgBC4gBZAMBnBCMAQmkAR0DAagQtgELuAEoAwGaEKcBU6cBWgMBmRCqAQuqAV0DAY0QrwELsQEoAwGMEL4BCY4KEQMBvQq5AxGhCRkDAYcGoggppggxAwGDBr4FGa4IIQMBlwW2CBmdCSEDAeYDigYhqggpAwGsAaYHKZoIMQIBA2MNYyQEAYQRAVwNXCQEAfcQAZ0BD6EBLQMBqxCWAQ+YASwDAaoQjwEPkQEsAwGpELcBDbcBJAQBmhABsAENsAEkBAGMEAHAAQ3SAhgDAe8M1wIRtgMcAwHTC8gJEcgJbwMBwAukCRHFCRwDAaYLhwoRhwpwAwGTC80JEYQKHAMBvwq7AxX5BCADAYIH/gQZuAUkAwGtBrsFGbsFewMBmwazCBmzCIUBAwGJBqQILaQIkAEDAYUGwAUdxQUoAwGABsoFIYQGLAMBqwWHBiGHBn4DAZkFuAgd+AgoAwGABP0IIZYJLAMB6AOMBiXQBjADAb8C1QYpoAc0AwHSAaMHKaMHhwEDAcABnwgpnwiGAQMBrgGoBy3UBzgCAVrZBzGTCDwCAQWfAVSfAVwDAawQlwERlwEoBAGqEAGQARGQASgEAakQAcoBD+gBIwMB0g/pAQ/pAXYDAdAP6gEP+gEcAwGxD/sBD48CJQMBlA+QAg+bAiYDAd8OnAIPrAIaAwGQDq0CD7MCIgMB9A20Ag+/AiYDAb8NwAIP0QIaAwHwDNsCE44DGgMBvAyPAxOjAykDAaUMpAMTtQMqAwHUC6UJE70JJwMBuwu+CRPECScDAacLzgkT5gknAwGOC+cJE+0JJwMB+gruCRODCh4DAcAKwAMX1AMtAwGmCtUDF+kDLgMBwQnqAxfwAysDAawJ8QMX9wMqAwGWCfgDF4MELgMB7QiEBBf4BBwDAYMHggUblgUxAwHrBpcFG6sFMQMB1QasBRu3BTIDAa4GpAh7pAiNAQMBhgbEBR/EBX4DAYEGzgUj4gU5AwHpBeMFI/cFOQMB0wX4BSODBjoDAawFuQgfzQg1AwGCBc4IH9wINgMBywTdCB/jCDMDAbgE5Agf9wgqAwGBBIEJI5UJOQMB6QORBielBj0DAc8DpgYntAY+AwGSA7UGJ7sGOwMB/QK8BifPBjIDAcAC2QYrnwcyAwHTAawHL8AHRQMBlgHBBy/MB0YCAW/NBy/TB0MCAVvdBzPxB0sCAUPyBzOGCEkCAS2HCDOSCEoCAQbbARXlATMDAdUP1AEV1gEyAwHUD80BFc8BMgMB0w/pAV3pAXMDAdEP7QEV8gEzAwHND/cBFfcB/QEDAbMP6gFP6gFVAwGyD4UCFYcCMgMBsA+MAhWMAmUDAZYP/gEVgAIyAwGVD5MCFZMCXQMB+g6YAhWYAmgDAeAOqQIVqQK/AQMBxQ6fAhWfAsQBAwGrDqQCFaQCfQMBkQ6tAjKtAjYDAY8OsAIVsAJlAwH1DbcCFbcCXQMB2g28AhW8AmQDAcANzgIVzgK5AQMBpQ3DAhXEAsIBAwGLDckCFckCiwEDAfEM3AIV9AIiAwHWDPUCFY0DIgMBvQyZAxmbAzYDAbsMoAMZoANpAwGnDJIDGZQDNgMBpgyvAxmvA3MDAZEMsgMZsgN0AwH9C6wDGawDcAMB6QunAxmnA2EDAdULtgkZugk3AwG+C68JGbEJNgMBvQuoCRmqCTYDAbwLwQkZwQloAwGoC98JGeMJNwMBkQvYCRnaCTYDAZAL0QkZ0wk2AwGPC+oJGeoJaAMB+wqAChmACsMBAwHnCvEJGfYJwgEDAdQK+wkZ+wmKAQMBwQrKAx3MAzoDAbwK0QMd0QNtAwGoCsMDHcUDOgMBpwrgAx3gA3cDAZIK3QMd3QN0AwH+CeYDHeYDeQMB6gnYAx3YA2UDAdYJ4wMd4wN4AwHCCe0DHe0DbAMBrQnxAzrxAz4DAasJ9AMd9ANtAwGXCfsDHfsDZQMBggmABB2ABGwDAe4IhwQdhwSJAQMBhAeLBBueBCYDAbAIoQQb9gQmAwGYB4IFZ4IFdAMBgQeMBSGOBT4DAYAHhQUhhwU+AwH/BpMFIZMFaAMB7AahBSGjBT4DAeoGqAUhqAVxAwHXBpoFIZwFPgMB1ga0BSG0BXgDAcIGrwUhrwVpAwGvBsQFbcQFewMBggbOBW/OBXwDAf8F2AUp2gVGAwH+BdEFKdMFRgMB/QXfBSnfBXADAeoF7QUp7wVGAwHoBfQFKfQFeQMB1QXmBSnoBUYDAdQFgAYpgAaAAQMBwAX7BSn7BXEDAa0FwwglxQhCAwGWBcoIJcoIdQMBhAW8CCW+CEIDAYMF1ggl1gh8AwHwBNEIJdEIbQMB3gTZCCXZCIABAwHMBOAIJeAIdAMBuQT0CCX0CM8BAwGmBOcIJeoIwgEDAZQE7wgl7widAQMBggSBCW+BCXwDAf8DiwkpjQlGAwH+A4QJKYYJRgMB/QOSCSmSCXADAeoDmwYtnQZKAwHlA6IGLaIGfQMB0QOUBi2WBkoDAdADrgYtrgaEAQMBuwOxBi2xBocBAwGnA6kGLakGdQMBkwO4Bi24BnwDAf4CzAYtzAbXAQMB6QK/Bi3CBsIBAwHVAscGLccGpQEDAcEC2gYtlQc6AwHpAZYHLZ4HOgMB1AG2BzW4B1IDAasBvQc1vQeFAQMBmAGvBzWxB1IDAZcByQc1yQeMAQMBgwHEBzXEB30CAXDQBzXQB4QBAgFc7Ac57gdWAgFZ3QeBAd0HjwECAVjgBzngB4oBAgFF5Qc55wdWAgFE/Ac5/gdWAgFCgwg5gwiJAQIBL/UHOfcHVgIBLo8IOY8IkAECARqKCDmKCIEBAgEH4gEb4gFnAwHxD90BWt0BbgMB8A/fARvfAY0BAwHWD9UBF9UBLgQB1A8BzgEXzgEuBAHTDwHvAU/vAW0DAc8P8AFV8AFzAwHOD4YCF4YCLgQBsA8B/wEX/wEuBAGVDwHeAhnyAjEDAdcM9wIZiwMxAwG+DJoDG5oDMgQBuwwBkwMbkwMyBAGmDAG4CV64CWQDAb8LsAkbsAkyBAG9CwGpCRupCTIEAbwLAeEJXuEJZwMBkgvZCRvZCTIEAZALAdIJG9IJMgQBjwsBywMfywM2BAG8CgHEAx/EAzYEAacKAZsEIZsExQEDAdkIjgQhkQTCAQMBxQiWBCGWBIsBAwGxCKIEHboEMQMBqwi7BB3NBCgDAe4HzgQd4gQzAwHXB+MEHe4ENAMBrgfvBB31BDEDAZkHjQUjjQU6BAGABwGGBSOGBToEAf8GAaIFI6IFOgQB6gYBmwUjmwU6BAHWBgHZBSvZBUIEAf4FAdIFK9IFQgQB/QUB7gUr7gVCBAHoBQHnBSvnBUIEAdQFAcQIJ8QIPgQBlgUBvQgnvQg+BAGDBQGMCSuMCUIEAf4DAYUJK4UJQgQB/QMBnAYvnAZGBAHlAwGVBi+VBkYEAdADAdwGMZMHPAMB6gGYBzGcBzkDAdUBtwc3twdOBAGrAQGwBzewB04EAZcBAe0HO+0HUgMBWQHmBzvmB1IDAUQB/Qc7/QdSAwFCAfYHO/YHUgMBLgHtAh/vAjwDAe4M3gJn3gJxAwHtDOECH+ECcAMB2QzmAh/oAjwDAdgMhgMfiAM8AwHVDPcCZ/cCcgMB1Az6Ah/6AnADAcAM/wIfgQM8AwG/DLMEI7cEQQMBrgisBCOuBEADAa0IpQQjpwRAAwGsCMoEI8oExwEDAZcIvgQjwATCAQMBgwjFBCPFBJsBAwHvB9gEI9oEQAMB7QffBCPfBHMDAdkH0QQj0wRAAwHYB+sEI+sEegMBwwfmBCPmBGsDAa8H8gQj8gRyAwGaB90GM/EGSwMBqALyBjOGB0kDAZIChwczkgdKAwHrAZoHNZoHjAEDAdYB7gIh7gI4BAHuDAHnAiHnAjgEAdgMAYcDIYcDOAQB1QwBgAMhgAM4BAG/DAG1BGi1BG4DAa8IrQQlrQQ8BAGtCAGmBCWmBDwEAawIAdkEJdkEPAQB7QcB0gQl0gQ8BAHYBwHsBjnuBlYDAb4C3QaBAd0GiwEDAb0C4AY54AaKAQMBqgLlBjnnBlYDAakC/AY5/gZWAwGnAoMHOYMHiQEDAZQC9QY59wZWAwGTAo8HOY8HkAEDAf8Bigc5igeBAQMB7AHtBjvtBlIEAb4CAeYGO+YGUgQBqQIB/QY7/QZSBAGnAgH2Bjv2BlIEAZMCAQ==</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
@@ -1437,8 +1492,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="Email_5" sap:VirtualizedContainerService.HintSize="200,68" />
-      <sap2010:ViewStateData Id="Email_7" sap:VirtualizedContainerService.HintSize="247,68" />
-      <sap2010:ViewStateData Id="UpdateListItem_18" sap:VirtualizedContainerService.HintSize="247,68">
+      <sap2010:ViewStateData Id="UpdateListItem_20" sap:VirtualizedContainerService.HintSize="247,68">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1449,6 +1503,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Email_7" sap:VirtualizedContainerService.HintSize="247,68" />
       <sap2010:ViewStateData Id="LookupSPListItem_15" sap:VirtualizedContainerService.HintSize="247,89">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1578,7 +1633,8 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WriteToHistory_6" sap:VirtualizedContainerService.HintSize="247,68" />
-      <sap2010:ViewStateData Id="Sequence_16" sap:VirtualizedContainerService.HintSize="269,453">
+      <sap2010:ViewStateData Id="Email_8" sap:VirtualizedContainerService.HintSize="247,68" />
+      <sap2010:ViewStateData Id="Sequence_16" sap:VirtualizedContainerService.HintSize="269,561">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1906,14 +1962,15 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WriteToHistory_3" sap:VirtualizedContainerService.HintSize="200,68" />
-      <sap2010:ViewStateData Id="Sequence_14" sap:VirtualizedContainerService.HintSize="222,300">
+      <sap2010:ViewStateData Id="Email_9" sap:VirtualizedContainerService.HintSize="200,68" />
+      <sap2010:ViewStateData Id="Sequence_14" sap:VirtualizedContainerService.HintSize="222,408">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Transition_2" sap:VirtualizedContainerService.HintSize="429.6,670.4">
+      <sap2010:ViewStateData Id="Transition_2" sap:VirtualizedContainerService.HintSize="678,1985">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:PointCollection x:Key="ConnectorLocation">269.2,139.1 269.2,169.1 931.92,169.1 931.92,421.2</av:PointCollection>
