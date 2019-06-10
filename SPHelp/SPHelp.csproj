@@ -43,15 +43,15 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="Features\Feature3\Feature3.Template.xml">
-      <DependentUpon>Feature3.feature</DependentUpon>
+    <Content Include="Features\ParametersList\ParametersList.Template.xml">
+      <DependentUpon>ParametersList.feature</DependentUpon>
     </Content>
     <Content Include="Lists\chamados\chamadosInstance\Elements.xml" />
     <Content Include="Lists\chamados\Elements.xml" />
     <Content Include="Lists\chamados\Schema.xml" />
-    <Content Include="Lists\parametros\Elements.xml" />
-    <Content Include="Lists\parametros\parametrosInstance\Elements.xml" />
-    <Content Include="Lists\parametros\Schema.xml" />
+    <Content Include="Lists\workflowParameters\Elements.xml" />
+    <Content Include="Lists\workflowParameters\Schema.xml" />
+    <Content Include="Lists\workflowParameters\workflowParametersInstance\Elements.xml" />
     <Content Include="Scripts\Forms.js" />
     <Content Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -59,8 +59,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="WorkflowHistoryList\Elements.xml" />
-    <None Include="Features\Feature3\Feature3.feature">
-      <FeatureId>{03f10697-5e47-48b4-b181-869d91b26858}</FeatureId>
+    <None Include="Features\ParametersList\ParametersList.feature">
+      <FeatureId>{22a96bca-a1ad-4c3e-bbaa-0ea049e7c96e}</FeatureId>
     </None>
     <None Include="Lists\chamados\chamadosInstance\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{79af8eb3-a47d-4a32-8030-d350c56dfbde}</SharePointProjectItemId>
@@ -68,11 +68,11 @@
     <None Include="Lists\chamados\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c124be93-44ba-40e7-b31c-30588fb20a43}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\parametros\parametrosInstance\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{cdbcd97f-47db-405d-92bf-d72d5b7ae698}</SharePointProjectItemId>
+    <None Include="Lists\workflowParameters\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{fc4ff665-74d0-473a-bcd9-fd204ca0fed2}</SharePointProjectItemId>
     </None>
-    <None Include="Lists\parametros\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{316d3977-0ffa-4cfd-9287-24ca7a450305}</SharePointProjectItemId>
+    <None Include="Lists\workflowParameters\workflowParametersInstance\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f4a81d7d-9967-42dd-98dc-6b838a7c500d}</SharePointProjectItemId>
     </None>
     <None Include="packages.config" />
     <None Include="Pages\SharePointProjectItem.spdata">

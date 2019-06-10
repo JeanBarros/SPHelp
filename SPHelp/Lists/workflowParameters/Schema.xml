@@ -1,17 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="Parametros" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/Parametros" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
+<List xmlns:ows="Microsoft SharePoint" Title="Workflow Parameters" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/Workflow Parameters" BaseType="0" xmlns="http://schemas.microsoft.com/sharepoint/">
   <MetaData>
-    <ContentTypes>
+    <ContentTypes>      
       
+    <ContentType ID="0x0100278ef26cc8a2416892bfc859e8243387" Name="ListFieldsContentType"><FieldRefs>      
       
-    <ContentType ID="0x0100749ac5853db24645949b4ccfe6ef12cf" Name="ListFieldsContentType"><FieldRefs><FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" /><FieldRef ID="{e2f33b19-516f-47d5-87bd-7568ffd43b3b}" Name="GroupId" /><FieldRef ID="{6ccfd787-fdc3-48fa-97ae-a5bbf003c395}" Name="CategoriaGrupo" /></FieldRefs></ContentType><ContentTypeRef ID="0x01">
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" />
+      <FieldRef ID="{bc253134-04bb-42ae-b4d3-5017729f98fa}" Name="groupID" />
+      <FieldRef ID="{89e6f464-86df-498a-9c29-6eb9875c55b8}" Name="groupCategory" />
+      <FieldRef ID="{c3b0b247-d06a-42b5-872c-518ce4e06294}" Name="PrazoReaberturaChamado" DefaultValue="30" />
+    </FieldRefs>
+    </ContentType>
+      <ContentTypeRef ID="0x01">
         <Folder TargetName="Item" />
       </ContentTypeRef><ContentTypeRef ID="0x0120" /></ContentTypes>
-    <Fields>
+    <Fields>      
       
-    <Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Type="Text" Name="Title" DisplayName="Nome do grupo" Required="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" MaxLength="255" /><Field Name="GroupId" ID="{e2f33b19-516f-47d5-87bd-7568ffd43b3b}" DisplayName="ID do grupo" Type="Number" /><Field Name="CategoriaGrupo" ID="{6ccfd787-fdc3-48fa-97ae-a5bbf003c395}" DisplayName="Categoria do grupo" Type="Choice" EnforceUniqueValues="true" Indexed="TRUE"><CHOICES><CHOICE>Acesso</CHOICE><CHOICE>Aprovadores</CHOICE><CHOICE>Internet</CHOICE><CHOICE>Intranet</CHOICE><CHOICE>Microinformática</CHOICE><CHOICE>Sistemas</CHOICE><CHOICE>Suporte</CHOICE></CHOICES></Field></Fields>
-    <Views>
-      
+      <Field ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Type="Text" Name="Title" DisplayName="Nome do grupo" Required="TRUE" SourceID="http://schemas.microsoft.com/sharepoint/v3" StaticName="Title" MaxLength="255" />
+      <Field Name="groupID" ID="{bc253134-04bb-42ae-b4d3-5017729f98fa}" DisplayName="ID do grupo" Type="Number" Required="TRUE" />
+      <Field Name="groupCategory" ID="{89e6f464-86df-498a-9c29-6eb9875c55b8}" DisplayName="Categoria do grupo" Type="Choice" Required="TRUE"><CHOICES><CHOICE>Acesso</CHOICE><CHOICE>Aprovadores</CHOICE><CHOICE>Internet</CHOICE><CHOICE>Intranet</CHOICE><CHOICE>Microinformática</CHOICE><CHOICE>Sistemas</CHOICE><CHOICE>Suporte</CHOICE></CHOICES></Field>
+      <Field Name="PrazoReaberturaChamado" ID="{c3b0b247-d06a-42b5-872c-518ce4e06294}" DisplayName="Prazo para reabertura de chamados" Type="Number" Required="TRUE" Description="Número de dias que os chamados podem ser reabertos" Min="1" /></Fields>
+    <Views>      
       
     <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
         <Toolbar Type="Standard" />
@@ -35,9 +44,11 @@
         <XslLink Default="TRUE">main.xsl</XslLink>
         <JSLink>clienttemplates.js</JSLink>
         <RowLimit Paged="TRUE">30</RowLimit>
-        <ViewFields>
+        <ViewFields>             
           
-        <FieldRef Name="LinkTitle"></FieldRef><FieldRef Name="GroupId" /><FieldRef Name="CategoriaGrupo" /></ViewFields>
+          <FieldRef Name="LinkTitle"></FieldRef><FieldRef Name="groupID" />
+          <FieldRef Name="groupCategory" />
+          <FieldRef Name="PrazoReaberturaChamado" /></ViewFields>
         <Query>
           <OrderBy>
             

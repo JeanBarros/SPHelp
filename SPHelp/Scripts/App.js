@@ -20,6 +20,36 @@ function ObterItensDaLista( itemId) {
     return false;
 }
 
+
+var masterListItem;
+var status1 = "Fechado";
+var status2 = "Em andamento";
+
+function updateStatus(status) {
+    var clientContext = new SP.ClientContext.get_current();
+    var masterlist = requestList;
+
+    masterListItem = masterlist.getItemById(itemId);
+    clientContext.load(masterListItem);
+
+    var oListItem = requestList.getItemById(itemId);
+
+    //var currentStatus = $('.ms-formtable tr:nth-child(4) :selected').text();
+
+    oListItem.set_item('statusSolicitacao', status);
+    oListItem.update();
+
+    clientContext.executeQueryAsync(onQuerySucceeded, onQueryFailed);
+}
+
+function onQuerySucceeded() {
+    window.location.replace(clientContext.$v_0 + "/Lists/Chamados/AllItems.aspx");  
+}
+
+function onQueryFailed() {
+    console.log('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+}
+
 function onSucceededCallback(sender, args) {
     var enumerator = completedItems.getEnumerator();
     //var listItens;
@@ -36,7 +66,7 @@ function onSucceededCallback(sender, args) {
     // Verifica o status da solicitação
     if (listItem.get_item('statusSolicitacao') == "Rascunho") {
 
-        listElements = $(".ms-formtable tr:nth-child(4), .ms-formtable tr:nth-child(7), .ms-formtable tr:nth-child(9),"
+        listElements = $(".ms-formtable tr:nth-child(4), .ms-formtable tr:nth-child(8), .ms-formtable tr:nth-child(10),"
             + ".ms-formtable tr:nth-child(11), .ms-formtable tr:nth-child(12)").remove()
     }
 
@@ -249,7 +279,7 @@ function onSucceededCallback(sender, args) {
         CurrentUserMemberOfGroup("Suporte", function (isCurrentUserInGroup) {
             if (isCurrentUserInGroup) {
 
-                listElements = $(".ms-formtable tr:nth-child(9), .ms-formtable tr:nth-child(11) td:last-child textarea, .ms-formtable tr:nth-child(12)").remove()
+                listElements = $(".ms-formtable tr:nth-child(4), .ms-formtable tr:nth-child(9), .ms-formtable tr:nth-child(11) td:last-child textarea").remove()
 
                 $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
                 $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
@@ -263,6 +293,11 @@ function onSucceededCallback(sender, args) {
                     $('.ms-formtable tr:nth-child(7) td:last-child').empty()
                 else
                     $('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
+
+                $('.ms-toolbar:nth-child(3) input').remove() // Save button
+                $('.ms-toolbar:nth-child(3)').append('<input id = "btnFecharChamado" type = "button" value = "Fechar chamado" onclick = updateStatus(status1) />')
+                $('.ms-toolbar:nth-child(3)').append('<input id = "btnAtenderChamado" type = "button" value = "Atender chamado" onclick = updateStatus(status2) />')
+                    
             }
             else {
 
@@ -284,10 +319,13 @@ function onSucceededCallback(sender, args) {
 
                 // Remove a ribbon e o botão de salvar do form
                 $("#s4-ribbonrow").remove() // Ribbon
-                $('.ms-toolbar:nth-child(3)').remove() // Save button
+                $('.ms-toolbar:nth-child(3) input').remove() // Save button
 
                 // Altera o texto do botão "Cancelar" para "Fechar"
                 $('.ms-toolbar:nth-child(4) input').prop('value', 'Fechar') // Cancel button
+
+
+                
             }
         });
     }
@@ -363,6 +401,13 @@ function CurrentUserMemberOfGroup(groupName, OnComplete) {
         return userInGroup;
     }
 }
+
+//function AddData() {
+//    alert('Dados adcionados')
+//}
+
+
+
 
 // Código original do arquivo
 
