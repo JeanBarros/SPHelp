@@ -39,7 +39,7 @@
           <Field Name="SalvarComoRascunho" ID="{a987647d-2956-4c44-8ca6-66a415e3b0f3}" DisplayName="Salvar como rascunho" Type="Boolean" Description="Marque esta opção se desejar apenas salvar o documento e continuar preenchendo posteriormente. Não será enviado para aprovação enquanto a caixa de seleção estiver marcada." />        
           <Field Name="justificativaRejeicao" ID="{ed1af7a6-4153-4be4-9b6e-9831f11dce32}" DisplayName="Justificativa" Type="Note" ShowInNewForm="FALSE" />
           <Field Name="InformacoesAdicionais" ID="{fd757f42-556a-4314-a739-9dea961a5fc7}" DisplayName="Informações adicionais" Type="Note" ShowInNewForm="FALSE" ShowInVersionHistory="TRUE" AppendOnly="TRUE" />
-          <Field Name="resolucao" ID="{00d61f6e-bdd3-476a-9665-7824ce49ecce}" DisplayName="Resolução" Type="Note" ShowInNewForm="FALSE" ShowInVersionHistory="TRUE" />
+          <Field Name="resolucao" ID="{00d61f6e-bdd3-476a-9665-7824ce49ecce}" DisplayName="Resolução" Type="Note" ShowInNewForm="FALSE" ShowInVersionHistory="TRUE" AppendOnly="TRUE" />
         </Fields>
     <Views>      
       
