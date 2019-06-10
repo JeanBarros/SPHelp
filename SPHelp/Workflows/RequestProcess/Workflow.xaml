@@ -829,14 +829,16 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
                                         <p1:Email.Body>
                                           <InArgument x:TypeArguments="x:String">
                                             <mca:CSharpValue x:TypeArguments="x:String" xml:space="preserve">$"&lt;p&gt;Caro usuário, o chamado número {idSolicitacao} foi concluído.&lt;/p&gt;" +
-$"Resolução: {resolucaoSolicitacao}&lt;br/&gt;Solicitação: {tituloSolicitacao}&lt;br/&gt;Descrição: {descricaoSolicitacao}&lt;br/&gt;" +
+$"Solicitação: {tituloSolicitacao}&lt;br/&gt;" +
+$"Descrição: {descricaoSolicitacao}&lt;br/&gt;" +
+$"Resolução: { resolucaoSolicitacao}&lt;br/&gt;&lt;br/&gt;" +
 
 $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={siteURL}Lists/Chamados/AllItems.aspx'&gt;Clique no link &lt;/a&gt; para acessar o item.&lt;/p&gt;"</mca:CSharpValue>
                                           </InArgument>
                                         </p1:Email.Body>
                                         <p1:Email.Subject>
                                           <InArgument x:TypeArguments="x:String">
-                                            <mca:CSharpValue x:TypeArguments="x:String">"A solicitação " + idSolicitacao + " requer mais detalhes"</mca:CSharpValue>
+                                            <mca:CSharpValue x:TypeArguments="x:String">"Solicitação " + idSolicitacao + " Finalizada"</mca:CSharpValue>
                                           </InArgument>
                                         </p1:Email.Subject>
                                         <p1:Email.To>
@@ -1309,12 +1311,12 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
         <Variable x:TypeArguments="x:String" Name="informacoesAdicionais" />
       </StateMachine.Variables>
     </StateMachine>
-    <sads:DebugSymbol.Symbol>d3tDOlxVc2Vyc1xqZWFuLmJhcnJvc1xPbmVEcml2ZSAtIFNlbm5pdCBUZWNub2xvZ2lhIEx0ZGFcUHJvamV0b3NcU2Vubml0XFNQSGVscFxTUEhlbHBcV29ya2Zsb3dzXFJlcXVlc3RQcm9jZXNzXFdvcmtmbG93LnhhbWzKAisDoQoOAgEBOQU/EQMBtxFABUsXAwGeEUwFVxwDAYURWAVsGwMB9hBtBYQBHAMBrRCFAQWmAQoDAZsQpwEFuwEdAwGLELwBBZ8KFAIBAjwLPFgDAbgRQwtDdQMBqxFIC0hbAwGfEU8LT1MDAZIRVAtUYAMBhhFiC2QoAwGEEWkLaVsDAfgQWwtdKAMB9xB1C3VkAwHqEHsLe1YDAd4QeAt4XgMB0hBwC3BTAwHGEH4LfmIDAboQgQELgQFfAwGuEIgBC4gBZAMBnBCMAQmkAR0DAagQtgELuAEoAwGaEKcBU6cBWgMBmRCqAQuqAV0DAY0QrwELsQEoAwGMEL4BCY4KEQMBvQq5AxGhCRkDAYcGoggppggxAwGDBr4FGa4IIQMBlwW2CBmdCSEDAeYDigYhqggpAwGsAaYHKZoIMQIBA2MNYyQEAYQRAVwNXCQEAfcQAZ0BD6EBLQMBqxCWAQ+YASwDAaoQjwEPkQEsAwGpELcBDbcBJAQBmhABsAENsAEkBAGMEAHAAQ3SAhgDAe8M1wIRtgMcAwHTC8gJEcgJbwMBwAukCRHFCRwDAaYLhwoRhwpwAwGTC80JEYQKHAMBvwq7AxX5BCADAYIH/gQZuAUkAwGtBrsFGbsFewMBmwazCBmzCIUBAwGJBqQILaQIkAEDAYUGwAUdxQUoAwGABsoFIYQGLAMBqwWHBiGHBn4DAZkFuAgd+AgoAwGABP0IIZYJLAMB6AOMBiXQBjADAb8C1QYpoAc0AwHSAaMHKaMHhwEDAcABnwgpnwiGAQMBrgGoBy3UBzgCAVrZBzGTCDwCAQWfAVSfAVwDAawQlwERlwEoBAGqEAGQARGQASgEAakQAcoBD+gBIwMB0g/pAQ/pAXYDAdAP6gEP+gEcAwGxD/sBD48CJQMBlA+QAg+bAiYDAd8OnAIPrAIaAwGQDq0CD7MCIgMB9A20Ag+/AiYDAb8NwAIP0QIaAwHwDNsCE44DGgMBvAyPAxOjAykDAaUMpAMTtQMqAwHUC6UJE70JJwMBuwu+CRPECScDAacLzgkT5gknAwGOC+cJE+0JJwMB+gruCRODCh4DAcAKwAMX1AMtAwGmCtUDF+kDLgMBwQnqAxfwAysDAawJ8QMX9wMqAwGWCfgDF4MELgMB7QiEBBf4BBwDAYMHggUblgUxAwHrBpcFG6sFMQMB1QasBRu3BTIDAa4GpAh7pAiNAQMBhgbEBR/EBX4DAYEGzgUj4gU5AwHpBeMFI/cFOQMB0wX4BSODBjoDAawFuQgfzQg1AwGCBc4IH9wINgMBywTdCB/jCDMDAbgE5Agf9wgqAwGBBIEJI5UJOQMB6QORBielBj0DAc8DpgYntAY+AwGSA7UGJ7sGOwMB/QK8BifPBjIDAcAC2QYrnwcyAwHTAawHL8AHRQMBlgHBBy/MB0YCAW/NBy/TB0MCAVvdBzPxB0sCAUPyBzOGCEkCAS2HCDOSCEoCAQbbARXlATMDAdUP1AEV1gEyAwHUD80BFc8BMgMB0w/pAV3pAXMDAdEP7QEV8gEzAwHND/cBFfcB/QEDAbMP6gFP6gFVAwGyD4UCFYcCMgMBsA+MAhWMAmUDAZYP/gEVgAIyAwGVD5MCFZMCXQMB+g6YAhWYAmgDAeAOqQIVqQK/AQMBxQ6fAhWfAsQBAwGrDqQCFaQCfQMBkQ6tAjKtAjYDAY8OsAIVsAJlAwH1DbcCFbcCXQMB2g28AhW8AmQDAcANzgIVzgK5AQMBpQ3DAhXEAsIBAwGLDckCFckCiwEDAfEM3AIV9AIiAwHWDPUCFY0DIgMBvQyZAxmbAzYDAbsMoAMZoANpAwGnDJIDGZQDNgMBpgyvAxmvA3MDAZEMsgMZsgN0AwH9C6wDGawDcAMB6QunAxmnA2EDAdULtgkZugk3AwG+C68JGbEJNgMBvQuoCRmqCTYDAbwLwQkZwQloAwGoC98JGeMJNwMBkQvYCRnaCTYDAZAL0QkZ0wk2AwGPC+oJGeoJaAMB+wqAChmACsMBAwHnCvEJGfYJwgEDAdQK+wkZ+wmKAQMBwQrKAx3MAzoDAbwK0QMd0QNtAwGoCsMDHcUDOgMBpwrgAx3gA3cDAZIK3QMd3QN0AwH+CeYDHeYDeQMB6gnYAx3YA2UDAdYJ4wMd4wN4AwHCCe0DHe0DbAMBrQnxAzrxAz4DAasJ9AMd9ANtAwGXCfsDHfsDZQMBggmABB2ABGwDAe4IhwQdhwSJAQMBhAeLBBueBCYDAbAIoQQb9gQmAwGYB4IFZ4IFdAMBgQeMBSGOBT4DAYAHhQUhhwU+AwH/BpMFIZMFaAMB7AahBSGjBT4DAeoGqAUhqAVxAwHXBpoFIZwFPgMB1ga0BSG0BXgDAcIGrwUhrwVpAwGvBsQFbcQFewMBggbOBW/OBXwDAf8F2AUp2gVGAwH+BdEFKdMFRgMB/QXfBSnfBXADAeoF7QUp7wVGAwHoBfQFKfQFeQMB1QXmBSnoBUYDAdQFgAYpgAaAAQMBwAX7BSn7BXEDAa0FwwglxQhCAwGWBcoIJcoIdQMBhAW8CCW+CEIDAYMF1ggl1gh8AwHwBNEIJdEIbQMB3gTZCCXZCIABAwHMBOAIJeAIdAMBuQT0CCX0CM8BAwGmBOcIJeoIwgEDAZQE7wgl7widAQMBggSBCW+BCXwDAf8DiwkpjQlGAwH+A4QJKYYJRgMB/QOSCSmSCXADAeoDmwYtnQZKAwHlA6IGLaIGfQMB0QOUBi2WBkoDAdADrgYtrgaEAQMBuwOxBi2xBocBAwGnA6kGLakGdQMBkwO4Bi24BnwDAf4CzAYtzAbXAQMB6QK/Bi3CBsIBAwHVAscGLccGpQEDAcEC2gYtlQc6AwHpAZYHLZ4HOgMB1AG2BzW4B1IDAasBvQc1vQeFAQMBmAGvBzWxB1IDAZcByQc1yQeMAQMBgwHEBzXEB30CAXDQBzXQB4QBAgFc7Ac57gdWAgFZ3QeBAd0HjwECAVjgBzngB4oBAgFF5Qc55wdWAgFE/Ac5/gdWAgFCgwg5gwiJAQIBL/UHOfcHVgIBLo8IOY8IkAECARqKCDmKCIEBAgEH4gEb4gFnAwHxD90BWt0BbgMB8A/fARvfAY0BAwHWD9UBF9UBLgQB1A8BzgEXzgEuBAHTDwHvAU/vAW0DAc8P8AFV8AFzAwHOD4YCF4YCLgQBsA8B/wEX/wEuBAGVDwHeAhnyAjEDAdcM9wIZiwMxAwG+DJoDG5oDMgQBuwwBkwMbkwMyBAGmDAG4CV64CWQDAb8LsAkbsAkyBAG9CwGpCRupCTIEAbwLAeEJXuEJZwMBkgvZCRvZCTIEAZALAdIJG9IJMgQBjwsBywMfywM2BAG8CgHEAx/EAzYEAacKAZsEIZsExQEDAdkIjgQhkQTCAQMBxQiWBCGWBIsBAwGxCKIEHboEMQMBqwi7BB3NBCgDAe4HzgQd4gQzAwHXB+MEHe4ENAMBrgfvBB31BDEDAZkHjQUjjQU6BAGABwGGBSOGBToEAf8GAaIFI6IFOgQB6gYBmwUjmwU6BAHWBgHZBSvZBUIEAf4FAdIFK9IFQgQB/QUB7gUr7gVCBAHoBQHnBSvnBUIEAdQFAcQIJ8QIPgQBlgUBvQgnvQg+BAGDBQGMCSuMCUIEAf4DAYUJK4UJQgQB/QMBnAYvnAZGBAHlAwGVBi+VBkYEAdADAdwGMZMHPAMB6gGYBzGcBzkDAdUBtwc3twdOBAGrAQGwBzewB04EAZcBAe0HO+0HUgMBWQHmBzvmB1IDAUQB/Qc7/QdSAwFCAfYHO/YHUgMBLgHtAh/vAjwDAe4M3gJn3gJxAwHtDOECH+ECcAMB2QzmAh/oAjwDAdgMhgMfiAM8AwHVDPcCZ/cCcgMB1Az6Ah/6AnADAcAM/wIfgQM8AwG/DLMEI7cEQQMBrgisBCOuBEADAa0IpQQjpwRAAwGsCMoEI8oExwEDAZcIvgQjwATCAQMBgwjFBCPFBJsBAwHvB9gEI9oEQAMB7QffBCPfBHMDAdkH0QQj0wRAAwHYB+sEI+sEegMBwwfmBCPmBGsDAa8H8gQj8gRyAwGaB90GM/EGSwMBqALyBjOGB0kDAZIChwczkgdKAwHrAZoHNZoHjAEDAdYB7gIh7gI4BAHuDAHnAiHnAjgEAdgMAYcDIYcDOAQB1QwBgAMhgAM4BAG/DAG1BGi1BG4DAa8IrQQlrQQ8BAGtCAGmBCWmBDwEAawIAdkEJdkEPAQB7QcB0gQl0gQ8BAHYBwHsBjnuBlYDAb4C3QaBAd0GiwEDAb0C4AY54AaKAQMBqgLlBjnnBlYDAakC/AY5/gZWAwGnAoMHOYMHiQEDAZQC9QY59wZWAwGTAo8HOY8HkAEDAf8Bigc5igeBAQMB7AHtBjvtBlIEAb4CAeYGO+YGUgQBqQIB/QY7/QZSBAGnAgH2Bjv2BlIEAZMCAQ==</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="WebUri_2" sap:VirtualizedContainerService.HintSize="1035,68" />
-      <sap2010:ViewStateData Id="LookupSPList_1" sap:VirtualizedContainerService.HintSize="1035,89">
+      <sap2010:ViewStateData Id="WebUri_2" sap:VirtualizedContainerService.HintSize="1035.2,68.8" />
+      <sap2010:ViewStateData Id="LookupSPList_1" sap:VirtualizedContainerService.HintSize="1035.2,91.2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1323,14 +1325,14 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GetODataProperties_17" sap:VirtualizedContainerService.HintSize="1035,92">
+      <sap2010:ViewStateData Id="GetODataProperties_17" sap:VirtualizedContainerService.HintSize="1035.2,92.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:String x:Key="Properties.SelectedEntityType">SharePoint_List</x:String>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="LookupSPListItem_1" sap:VirtualizedContainerService.HintSize="1035,89">
+      <sap2010:ViewStateData Id="LookupSPListItem_1" sap:VirtualizedContainerService.HintSize="1035.2,91.2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1340,14 +1342,14 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GetODataProperties_1" sap:VirtualizedContainerService.HintSize="1035,92">
+      <sap2010:ViewStateData Id="GetODataProperties_1" sap:VirtualizedContainerService.HintSize="1035.2,92.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:String x:Key="Properties.SelectedEntityType">Lists/Chamados</x:String>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="UpdateListItem_14" sap:VirtualizedContainerService.HintSize="200,68">
+      <sap2010:ViewStateData Id="UpdateListItem_14" sap:VirtualizedContainerService.HintSize="200,68.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1358,8 +1360,8 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="1035,218" />
-      <sap2010:ViewStateData Id="WaitForFieldChange_3" sap:VirtualizedContainerService.HintSize="1035,68">
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="1035.2,220.8" />
+      <sap2010:ViewStateData Id="WaitForFieldChange_3" sap:VirtualizedContainerService.HintSize="1035.2,68.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1537,7 +1539,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WaitForItemEvent_4" sap:VirtualizedContainerService.HintSize="247,68">
+      <sap2010:ViewStateData Id="WaitForItemEvent_4" sap:VirtualizedContainerService.HintSize="248,68.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1548,7 +1550,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="LookupSPListItem_3" sap:VirtualizedContainerService.HintSize="247,89">
+      <sap2010:ViewStateData Id="LookupSPListItem_3" sap:VirtualizedContainerService.HintSize="248,91.2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1558,29 +1560,29 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GetODataProperties_3" sap:VirtualizedContainerService.HintSize="247,92">
+      <sap2010:ViewStateData Id="GetODataProperties_3" sap:VirtualizedContainerService.HintSize="248,92.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:String x:Key="Properties.SelectedEntityType">Lists/Chamados</x:String>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="269,453">
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="270.4,457.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteToHistory_5" sap:VirtualizedContainerService.HintSize="200,68" />
-      <sap2010:ViewStateData Id="Sequence_15" sap:VirtualizedContainerService.HintSize="222,192">
+      <sap2010:ViewStateData Id="WriteToHistory_5" sap:VirtualizedContainerService.HintSize="200,68.8" />
+      <sap2010:ViewStateData Id="Sequence_15" sap:VirtualizedContainerService.HintSize="222.4,193.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WaitForItemEvent_5" sap:VirtualizedContainerService.HintSize="247,68">
+      <sap2010:ViewStateData Id="WaitForItemEvent_5" sap:VirtualizedContainerService.HintSize="248,68.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1591,7 +1593,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="LookupSPListItem_4" sap:VirtualizedContainerService.HintSize="247,89">
+      <sap2010:ViewStateData Id="LookupSPListItem_4" sap:VirtualizedContainerService.HintSize="248,91.2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1601,21 +1603,21 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GetODataProperties_4" sap:VirtualizedContainerService.HintSize="247,92">
+      <sap2010:ViewStateData Id="GetODataProperties_4" sap:VirtualizedContainerService.HintSize="248,92.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:String x:Key="Properties.SelectedEntityType">Lists/Chamados</x:String>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="269,453">
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="270.4,457.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="LookupSPListItem_11" sap:VirtualizedContainerService.HintSize="247,89">
+      <sap2010:ViewStateData Id="LookupSPListItem_11" sap:VirtualizedContainerService.HintSize="248,91.2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1625,16 +1627,16 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GetODataProperties_14" sap:VirtualizedContainerService.HintSize="247,92">
+      <sap2010:ViewStateData Id="GetODataProperties_14" sap:VirtualizedContainerService.HintSize="248,92.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:String x:Key="Properties.SelectedEntityType">Lists/Chamados</x:String>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteToHistory_6" sap:VirtualizedContainerService.HintSize="247,68" />
-      <sap2010:ViewStateData Id="Email_8" sap:VirtualizedContainerService.HintSize="247,68" />
-      <sap2010:ViewStateData Id="Sequence_16" sap:VirtualizedContainerService.HintSize="269,561">
+      <sap2010:ViewStateData Id="WriteToHistory_6" sap:VirtualizedContainerService.HintSize="248,68.8" />
+      <sap2010:ViewStateData Id="Email_8" sap:VirtualizedContainerService.HintSize="248,68.8" />
+      <sap2010:ViewStateData Id="Sequence_16" sap:VirtualizedContainerService.HintSize="270.4,566.4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1756,11 +1758,11 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_7" sap:VirtualizedContainerService.HintSize="114,61">
+      <sap2010:ViewStateData Id="State_7" sap:VirtualizedContainerService.HintSize="114.4,61.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">562.8,619.2</av:Point>
-            <av:Size x:Key="ShapeSize">114,61</av:Size>
+            <av:Size x:Key="ShapeSize">114.4,61.6</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
@@ -1776,11 +1778,11 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
       <sap2010:ViewStateData Id="WriteToHistory_8" sap:VirtualizedContainerService.HintSize="200,68" />
-      <sap2010:ViewStateData Id="State_2" sap:VirtualizedContainerService.HintSize="161,77">
+      <sap2010:ViewStateData Id="State_2" sap:VirtualizedContainerService.HintSize="161.6,77.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">859.2,421.2</av:Point>
-            <av:Size x:Key="ShapeSize">161,77</av:Size>
+            <av:Size x:Key="ShapeSize">161.6,77.6</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
             <x:Double x:Key="StateContainerWidth">147</x:Double>
             <x:Double x:Key="StateContainerHeight">41.079999999999927</x:Double>
@@ -1797,36 +1799,36 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_6" sap:VirtualizedContainerService.HintSize="114,61">
+      <sap2010:ViewStateData Id="State_6" sap:VirtualizedContainerService.HintSize="325.6,956.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">602.8,369.2</av:Point>
-            <av:Size x:Key="ShapeSize">114,61</av:Size>
+            <av:Size x:Key="ShapeSize">114.4,61.6</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Transition_9" sap:VirtualizedContainerService.HintSize="430,900">
+      <sap2010:ViewStateData Id="Transition_9" sap:VirtualizedContainerService.HintSize="429.6,909.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Int32 x:Key="SrcConnectionPointIndex">36</x:Int32>
             <x:Int32 x:Key="DestConnectionPointIndex">37</x:Int32>
-            <av:PointCollection x:Key="ConnectorLocation">453.6,329.7 483.6,329.7 483.6,399.7 602.8,399.7</av:PointCollection>
+            <av:PointCollection x:Key="ConnectorLocation">454.4,330 484.4,330 484.4,399.6 602.8,399.6</av:PointCollection>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_4" sap:VirtualizedContainerService.HintSize="148,65">
+      <sap2010:ViewStateData Id="State_4" sap:VirtualizedContainerService.HintSize="148.8,65.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">305.6,297.2</av:Point>
-            <av:Size x:Key="ShapeSize">148,65</av:Size>
+            <av:Size x:Key="ShapeSize">148.8,65.6</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
             <x:Double x:Key="StateContainerWidth">134</x:Double>
             <x:Double x:Key="StateContainerHeight">29</x:Double>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Transition_5" sap:VirtualizedContainerService.HintSize="430,1193">
+      <sap2010:ViewStateData Id="Transition_5" sap:VirtualizedContainerService.HintSize="429.6,1204.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Int32 x:Key="SrcConnectionPointIndex">35</x:Int32>
@@ -1836,7 +1838,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="LookupSPListItem_13" sap:VirtualizedContainerService.HintSize="247,89">
+      <sap2010:ViewStateData Id="LookupSPListItem_13" sap:VirtualizedContainerService.HintSize="248,91.2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
@@ -1846,16 +1848,16 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="GetODataProperties_16" sap:VirtualizedContainerService.HintSize="247,92">
+      <sap2010:ViewStateData Id="GetODataProperties_16" sap:VirtualizedContainerService.HintSize="248,92.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:String x:Key="Properties.SelectedEntityType">Lists/Chamados</x:String>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="WriteToHistory_9" sap:VirtualizedContainerService.HintSize="247,68" />
-      <sap2010:ViewStateData Id="Email_6" sap:VirtualizedContainerService.HintSize="247,68" />
-      <sap2010:ViewStateData Id="Sequence_18" sap:VirtualizedContainerService.HintSize="269,561">
+      <sap2010:ViewStateData Id="WriteToHistory_9" sap:VirtualizedContainerService.HintSize="248,68.8" />
+      <sap2010:ViewStateData Id="Email_6" sap:VirtualizedContainerService.HintSize="248,68.8" />
+      <sap2010:ViewStateData Id="Sequence_18" sap:VirtualizedContainerService.HintSize="270.4,566.4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1889,11 +1891,11 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_5" sap:VirtualizedContainerService.HintSize="202,80">
+      <sap2010:ViewStateData Id="State_5" sap:VirtualizedContainerService.HintSize="202.4,80.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">39,490</av:Point>
-            <av:Size x:Key="ShapeSize">202,80</av:Size>
+            <av:Size x:Key="ShapeSize">202.4,80.8</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
             <x:Double x:Key="StateContainerWidth">188</x:Double>
             <x:Double x:Key="StateContainerHeight">44.040000000000077</x:Double>
@@ -1910,11 +1912,11 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_1" sap:VirtualizedContainerService.HintSize="542,1962">
+      <sap2010:ViewStateData Id="State_1" sap:VirtualizedContainerService.HintSize="155.2,73.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">32.4,233.2</av:Point>
-            <av:Size x:Key="ShapeSize">155,73</av:Size>
+            <av:Size x:Key="ShapeSize">155.2,73.6</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
             <x:Double x:Key="StateContainerWidth">141</x:Double>
             <x:Double x:Key="StateContainerHeight">37</x:Double>
@@ -1980,18 +1982,18 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="192,77">
+      <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="192,77.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">154,61.5</av:Point>
-            <av:Size x:Key="ShapeSize">192,77</av:Size>
+            <av:Size x:Key="ShapeSize">192,77.6</av:Size>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
             <x:Double x:Key="StateContainerWidth">178</x:Double>
             <x:Double x:Key="StateContainerHeight">41.080000000000041</x:Double>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="StateMachine_1" sap:VirtualizedContainerService.HintSize="1035,757">
+      <sap2010:ViewStateData Id="StateMachine_1" sap:VirtualizedContainerService.HintSize="1035.2,757.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2003,14 +2005,14 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="1057,1877">
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="1057.6,1888.8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="SPHelp.Workflows.Request_Process.Workflow_1" sap:VirtualizedContainerService.HintSize="1097,1957" />
+      <sap2010:ViewStateData Id="SPHelp.Workflows.Request_Process.Workflow_1" sap:VirtualizedContainerService.HintSize="1097.6,1968.8" />
     </sap2010:ViewStateManager>
   </sap2010:WorkflowViewState.ViewStateManager>
 </Activity>
