@@ -43,9 +43,6 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="Features\Feature1\Feature1.Template.xml">
-      <DependentUpon>Feature1.feature</DependentUpon>
-    </Content>
     <Content Include="Lists\chamados\chamadosInstance\Elements.xml" />
     <Content Include="Lists\chamados\Elements.xml" />
     <Content Include="Lists\chamados\Schema.xml" />
@@ -59,9 +56,6 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="WorkflowHistoryList\Elements.xml" />
-    <None Include="Features\Feature1\Feature1.feature">
-      <FeatureId>{0852ce91-d17f-4af1-93da-bdf25cf15044}</FeatureId>
-    </None>
     <None Include="Lists\chamados\chamadosInstance\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{79af8eb3-a47d-4a32-8030-d350c56dfbde}</SharePointProjectItemId>
     </None>
