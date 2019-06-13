@@ -20,30 +20,31 @@ function ObterItensDaLista( itemId) {
     return false;
 }
 
+var statusList = {
+    RASCUNHO: 'Rascunho',
+    ABERTO: 'Aberto',
+    REJEITADO: 'Rejeitado',
+    ANDAMENTO: 'Em andamento',
+    FECHADO: 'Fechado',    
+    AGUARDANDO: 'Aguardando informações',
+    REABERTO: 'Reaberto'
+}
 
-var masterListItem;
-var status1 = "Fechado";
-var status2 = "Em andamento";
-
-function updateStatus(status) {
-    var clientContext = new SP.ClientContext.get_current();
-    var masterlist = requestList;
-
-    masterListItem = masterlist.getItemById(itemId);
-    clientContext.load(masterListItem);
+// Atualiza a caluna status
+function updateStatus(status) {   
 
     var oListItem = requestList.getItemById(itemId);
-
-    //var currentStatus = $('.ms-formtable tr:nth-child(4) :selected').text();
+    clientContext.load(oListItem);
 
     oListItem.set_item('statusSolicitacao', status);
+    oListItem.set_item('observacoes', status);
     oListItem.update();
 
     clientContext.executeQueryAsync(onQuerySucceeded, onQueryFailed);
 }
 
-function onQuerySucceeded() {
-    window.location.replace(clientContext.$v_0 + "/Lists/Chamados/AllItems.aspx");  
+function onQuerySucceeded() {    
+    window.location.replace(clientContext.$v_0 + "/Lists/Chamados/AllItems.aspx");      
 }
 
 function onQueryFailed() {
@@ -52,15 +53,10 @@ function onQueryFailed() {
 
 function onSucceededCallback(sender, args) {
     var enumerator = completedItems.getEnumerator();
-    //var listItens;
+    
     var listElements;
     while (enumerator.moveNext()) {
         var listItem = enumerator.get_current();
-
-        // Só para testes
-        //listItens += 'Title: ' + listItem.get_item('Title') + '<br>';
-        //listItens += 'ID: ' + listItem.get_id() + '<br><br>';
-        //listItens += 'Status: ' + listItem.get_item('statusSolicitacao') + '<br>';
     }
 
     // Verifica o status da solicitação
@@ -80,6 +76,7 @@ function onSucceededCallback(sender, args) {
                 $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
                 $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
                 $('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+                $('.ms-formtable tr:nth-child(4) td:last-child').text(listItem.get_item('statusSolicitacao'))
                 $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
                 $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
 
@@ -87,6 +84,10 @@ function onSucceededCallback(sender, args) {
                     $('.ms-formtable tr:nth-child(7) td:last-child').empty()
                 else
                     $('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
+
+                $('.ms-toolbar:nth-child(3) input').remove() // Save button
+                $('.ms-toolbar:nth-child(3)').append('<input id = "btnAprovar" type = "button" value = "Aprovar" onclick = updateStatus(statusList.ABERTO) />')
+                $('.ms-toolbar:nth-child(3)').append('<input id = "btnRejeitar" type = "button" value = "Rejeitar" onclick = updateStatus(statusList.REJEITADO) />')
             }
             else {
                 listElements = $(".ms-formtable tr:nth-child(7), .ms-formtable tr:nth-child(9), .ms-formtable tr:nth-child(10),"
@@ -124,6 +125,7 @@ function onSucceededCallback(sender, args) {
                 $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
                 $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
                 $('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+                $('.ms-formtable tr:nth-child(4) td:last-child').text(listItem.get_item('statusSolicitacao'))
                 $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
                 $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
                 $('.ms-formtable tr:nth-child(8) td:last-child').text(listItem.get_item('observacoes'))
@@ -132,6 +134,10 @@ function onSucceededCallback(sender, args) {
                     $('.ms-formtable tr:nth-child(7) td:last-child').empty()
                 else
                     $('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
+
+                $('.ms-toolbar:nth-child(3) input').remove() // Save button
+                $('.ms-toolbar:nth-child(3)').append('<input id = "btnSolicitarInformacoes" type = "button" value = "Solicitar informações" onclick = updateStatus(statusList.AGUARDANDO) />')
+                $('.ms-toolbar:nth-child(3)').append('<input id = "btnAtender" type = "button" value = "Atender chamado" onclick = updateStatus(statusList.ANDAMENTO) />')
             }
             else {
                 listElements = $(".ms-formtable tr:nth-child(8), .ms-formtable tr:nth-child(9)," + 
@@ -188,6 +194,7 @@ function onSucceededCallback(sender, args) {
                 $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
                 $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
                 $('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+                $('.ms-formtable tr:nth-child(4) td:last-child').text(listItem.get_item('statusSolicitacao'))
                 $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
                 $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
                 $('.ms-formtable tr:nth-child(8) td:last-child').text(listItem.get_item('observacoes'))
@@ -197,6 +204,10 @@ function onSucceededCallback(sender, args) {
                     $('.ms-formtable tr:nth-child(7) td:last-child').empty()
                 else
                     $('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
+
+                $('.ms-toolbar:nth-child(3) input').remove() // Save button
+                $('.ms-toolbar:nth-child(3)').append('<input id = "btnFecharChamado" type = "button" value = "Fechar chamado" onclick = updateStatus(statusList.FECHADO) />')
+
             }
             else {
 
@@ -261,6 +272,7 @@ function onSucceededCallback(sender, args) {
                 $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
                 $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
                 $('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+                $('.ms-formtable tr:nth-child(4) td:last-child').text(listItem.get_item('statusSolicitacao'))
                 $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
                 $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
                 $('.ms-formtable tr:nth-child(10) td:last-child').text(listItem.get_item('resolucao'))
@@ -269,6 +281,9 @@ function onSucceededCallback(sender, args) {
                     $('.ms-formtable tr:nth-child(7) td:last-child').empty()
                 else
                     $('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
+
+                $('.ms-toolbar:nth-child(3) input').remove() // Save button
+                $('.ms-toolbar:nth-child(3)').append('<input id = "btnReabrirChamado" type = "button" value = "Reabrir chamado" onclick = updateStatus(statusList.REABERTO) />')
             }
         });        
     }
@@ -279,30 +294,32 @@ function onSucceededCallback(sender, args) {
         CurrentUserMemberOfGroup("Suporte", function (isCurrentUserInGroup) {
             if (isCurrentUserInGroup) {
 
-                listElements = $(".ms-formtable tr:nth-child(4), .ms-formtable tr:nth-child(9), .ms-formtable tr:nth-child(11) td:last-child textarea").remove()
+                listElements = $(".ms-formtable tr:nth-child(9), .ms-formtable tr:nth-child(11) td:last-child textarea").remove()
 
                 $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
                 $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
                 $('.ms-formtable tr:nth-child(3) td:last-child').text(listItem.get_item('descricaoSolicitacao'))
+                $('.ms-formtable tr:nth-child(4) td:last-child').text(listItem.get_item('statusSolicitacao'))
                 $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
                 $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
                 $('.ms-formtable tr:nth-child(8) td:last-child').text(listItem.get_item('observacoes'))
                 $('.ms-formtable tr:nth-child(9) td:last-child').text(listItem.get_item('justificativaRejeicao'))
+                $('.ms-formtable tr:nth-child(11) td:last-child').text(listItem.get_item('resolucao'))
 
                 if (listItem.get_item('urlPaginaAfetada') == null)
                     $('.ms-formtable tr:nth-child(7) td:last-child').empty()
                 else
                     $('.ms-formtable tr:nth-child(7) td:last-child').text(listItem.get_item('urlPaginaAfetada').$1_1)
 
+
                 $('.ms-toolbar:nth-child(3) input').remove() // Save button
-                $('.ms-toolbar:nth-child(3)').append('<input id = "btnFecharChamado" type = "button" value = "Fechar chamado" onclick = updateStatus(status1) />')
-                $('.ms-toolbar:nth-child(3)').append('<input id = "btnAtenderChamado" type = "button" value = "Atender chamado" onclick = updateStatus(status2) />')
+                $('.ms-toolbar:nth-child(3)').append('<input id = "btnAtender" type = "button" value = "Atender chamado" onclick = updateStatus(statusList.ANDAMENTO) />')
                     
             }
             else {
 
                 listElements = $(".ms-formtable tr:nth-child(8), .ms-formtable tr:nth-child(9),"
-                    + ".ms-formtable tr:nth-child(11) td:last-child textarea, .ms-formtable tr:nth-child(12)").remove()
+                    + ".ms-formtable tr:nth-child(11) td:last-child textarea").remove()
 
                 $('.ms-formtable tr:first-child td:last-child').text(listItem.get_item('Title'))
                 $('.ms-formtable tr:nth-child(2) td:last-child').text(listItem.get_item('categoriaSolicitacao'))
@@ -311,6 +328,7 @@ function onSucceededCallback(sender, args) {
                 $('.ms-formtable tr:nth-child(5) td:last-child').text(listItem.get_item('prioridadeSolicitacao'))
                 $('.ms-formtable tr:nth-child(6) td:last-child').text(listItem.get_item('criticidade'))
                 $('.ms-formtable tr:nth-child(8) td:last-child').text(listItem.get_item('justificativaRejeicao'))
+                $('.ms-formtable tr:nth-child(10) td:last-child').text(listItem.get_item('resolucao'))
                 
                 if (listItem.get_item('urlPaginaAfetada') == null)
                     $('.ms-formtable tr:nth-child(7) td:last-child').empty()
@@ -319,13 +337,10 @@ function onSucceededCallback(sender, args) {
 
                 // Remove a ribbon e o botão de salvar do form
                 $("#s4-ribbonrow").remove() // Ribbon
-                $('.ms-toolbar:nth-child(3) input').remove() // Save button
+                $('.ms-toolbar:nth-child(3)').remove() // Save button
 
                 // Altera o texto do botão "Cancelar" para "Fechar"
-                $('.ms-toolbar:nth-child(4) input').prop('value', 'Fechar') // Cancel button
-
-
-                
+                $('.ms-toolbar:nth-child(4) input').prop('value', 'Fechar') // Cancel button                
             }
         });
     }
@@ -358,10 +373,7 @@ function onSucceededCallback(sender, args) {
 }
 
 function onFailedCallback(sender, args) {
-    var myText = '<p>The request failed: <br>';
-    myText += 'Message: ' + args.get_message() + '<br>';
-    
-    console.log(myText)
+    console.log('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
 }
 
 function CurrentUserMemberOfGroup(groupName, OnComplete) {
@@ -402,12 +414,19 @@ function CurrentUserMemberOfGroup(groupName, OnComplete) {
     }
 }
 
-//function AddData() {
-//    alert('Dados adcionados')
-//}
+// Essa função é executada antes de submeter os dados do form
+function PreSaveAction() {
 
+    // Verifica se "Salvar como rascunho" está selecionado
+    if ($('.ms-formtable tr:nth-child(7) td:last-child input').is(":checked")) {
+        alert('salvar como rascunho')
+    }
+    else {
+        alert('enviar para aprovação')
+    }
 
-
+    return true;
+}
 
 // Código original do arquivo
 
