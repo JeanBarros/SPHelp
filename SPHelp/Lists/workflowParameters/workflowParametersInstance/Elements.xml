@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="Parametros" OnQuickLaunch="TRUE" TemplateType="100" Url="Lists/parametros" Description="Lista de paramêtros para configurações adicionais do workflow de solicitações"></ListInstance>
+</Elements>

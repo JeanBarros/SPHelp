@@ -16,11 +16,7 @@
 
 function FormOnPreRender(ctx) {
 
-    $('.ms-formtable').css('background-color', '#f5f5f5');
-    $('.ms-formtable tr:nth-child(5) input').attr('readonly', true);
-
-    if ($('.ms-formtable tbody tr:first-child td:last-child input').val() == "this is it") {
-        alert('bingo')
-        $('.ms-formtable tbody tr:first-child td:last-child input').attr('disabled', 'disabled');
-    }
+    $('#contentRow').css('text-align', '-webkit-center')
+    $('#onetIDListForm').css({ 'padding': '10px', 'background-color': '#f9f9f9', 'box-shadow': '0px 5px 8px #ccc' })
+    //$('.ms-formtable').css('background-color', '#f5f5f5');    
 }
