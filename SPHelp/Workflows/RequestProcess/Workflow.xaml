@@ -281,7 +281,7 @@
                   </InArgument>
                 </p1:Email.To>
               </p1:Email>
-              <p1:LookupSPGroup GroupPrincipalId="12" sap2010:WorkflowViewState.IdRef="LookupSPGroup_3">
+              <p1:LookupSPGroup GroupPrincipalId="23" sap2010:WorkflowViewState.IdRef="LookupSPGroup_3">
                 <p1:LookupSPGroup.Result>
                   <OutArgument x:TypeArguments="p:DynamicValue">
                     <mca:CSharpReference x:TypeArguments="p:DynamicValue">dv_5</mca:CSharpReference>
@@ -470,7 +470,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
                           </OutArgument>
                         </scg:Dictionary>
                       </p:GetODataProperties>
-                      <p1:LookupSPGroup GroupPrincipalId="13" sap2010:WorkflowViewState.IdRef="LookupSPGroup_2">
+                      <p1:LookupSPGroup GroupPrincipalId="24" sap2010:WorkflowViewState.IdRef="LookupSPGroup_2">
                         <p1:LookupSPGroup.Result>
                           <OutArgument x:TypeArguments="p:DynamicValue">
                             <mca:CSharpReference x:TypeArguments="p:DynamicValue">dv_1</mca:CSharpReference>
@@ -1828,7 +1828,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_4" sap:VirtualizedContainerService.HintSize="325.6,689.6">
+      <sap2010:ViewStateData Id="State_4" sap:VirtualizedContainerService.HintSize="148.8,65.6">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">305.6,297.2</av:Point>
@@ -1923,7 +1923,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_1" sap:VirtualizedContainerService.HintSize="155.2,73.6">
+      <sap2010:ViewStateData Id="State_1" sap:VirtualizedContainerService.HintSize="565.6,1870.4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">32.4,233.2</av:Point>
@@ -1982,7 +1982,7 @@ $"&lt;a href='{siteURL}/Lists/Chamados/EditForm.aspx?ID={itemId}&amp;Source={sit
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </sap2010:ViewStateData>
-      <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="192,77.6">
+      <sap2010:ViewStateData Id="State_3" sap:VirtualizedContainerService.HintSize="325.6,1438.4">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <av:Point x:Key="ShapeLocation">154,61.5</av:Point>
